@@ -1,0 +1,12 @@
+{
+  "name": "daily-verse-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-24",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "verse.namike.me",
+      "custom_domain": true
+    }
+  ]
+}
