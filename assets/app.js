@@ -7,6 +7,8 @@
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   const themeIconSun = document.getElementById('themeIconSun');
   const themeIconMoon = document.getElementById('themeIconMoon');
+  const themeColorMeta = document.getElementById('themeColorMeta');
+  const installPwaBtn = document.getElementById('installPwaBtn');
   const toastEl = document.getElementById('toastEl');
 
   const studySanctuary = document.getElementById('studySanctuary');
@@ -47,6 +49,7 @@
     const isDark = theme === 'dark';
     if (themeIconSun) themeIconSun.style.display = isDark ? 'block' : 'none';
     if (themeIconMoon) themeIconMoon.style.display = isDark ? 'none' : 'block';
+    if (themeColorMeta) themeColorMeta.setAttribute('content', isDark ? '#12110F' : '#F8F4EC');
     try {
       localStorage.setItem('daily-verse-theme', theme);
     } catch (_) {}
@@ -373,4 +376,46 @@
 
   syncStudyView();
   loadArchive();
+
+  let deferredInstallPrompt = null;
+  const isStandalone =
+    (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+    window.navigator.standalone === true;
+
+  window.addEventListener('beforeinstallprompt', (ev) => {
+    ev.preventDefault();
+    deferredInstallPrompt = ev;
+    if (installPwaBtn && !isStandalone) {
+      installPwaBtn.hidden = false;
+    }
+  });
+
+  if (installPwaBtn) {
+    installPwaBtn.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      try {
+        await deferredInstallPrompt.userChoice;
+      } catch (_) {}
+      deferredInstallPrompt = null;
+      installPwaBtn.hidden = true;
+    });
+  }
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstallPrompt = null;
+    if (installPwaBtn) installPwaBtn.hidden = true;
+    showToast('已安裝 晨光 App');
+  });
+
+  if (
+    'serviceWorker' in navigator &&
+    (window.location.protocol === 'https:' || window.location.hostname === 'localhost')
+  ) {
+    window.addEventListener('load', () => {
+      const swUrl = new URL(`${base}sw.js`, window.location.href).href;
+      const swScope = new URL(base, window.location.href).pathname;
+      navigator.serviceWorker.register(swUrl, { scope: swScope, updateViaCache: 'none' }).catch(() => {});
+    });
+  }
 })();

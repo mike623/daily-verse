@@ -38,15 +38,6 @@ REQUIRED_STR_FIELDS = (
     "contextHeading",
 )
 
-FAVICON_DATA_URI = (
-    "data:image/svg+xml,"
-    "%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%3E"
-    "%3Crect%20width%3D%2724%27%20height%3D%2724%27%20rx%3D%275%27%20fill%3D%27%23161412%27%2F%3E"
-    "%3Ccircle%20cx%3D%2712%27%20cy%3D%2713%27%20r%3D%274%27%20fill%3D%27%23C84B2A%27%2F%3E"
-    "%3Cline%20x1%3D%274%27%20y1%3D%2717%27%20x2%3D%2720%27%20y2%3D%2717%27%20stroke%3D%27%23F6F1E7%27%20stroke-width%3D%271.5%27%20stroke-linecap%3D%27round%27%2F%3E"
-    "%3C%2Fsvg%3E"
-)
-
 
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
@@ -291,13 +282,20 @@ def render_page(
 >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>{esc(title)}</title>
   <meta name="description" content="{esc(desc)}" />
   <meta property="og:title" content="{esc(title)}" />
   <meta property="og:description" content="{esc(desc)}" />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="{FAVICON_DATA_URI}" />
+  <meta name="theme-color" id="themeColorMeta" content="#F8F4EC" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="晨光" />
+  <link rel="manifest" href="{esc(base)}manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="{esc(base)}assets/icons/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{esc(base)}assets/icons/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -494,6 +492,7 @@ def render_page(
     <div class="footer-links">
       {footer_prev}
       <button type="button" class="footer-link" id="footerArchiveBtn">瀏覽完整歸檔</button>
+      <button type="button" class="footer-link" id="installPwaBtn" hidden>安裝 App</button>
     </div>
     <span class="tabular">verse.namike.me · 每日雙語經文與默想</span>
   </footer>
