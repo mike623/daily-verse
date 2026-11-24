@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import html
 import json
 import re
@@ -41,6 +42,11 @@ REQUIRED_STR_FIELDS = (
 
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
+
+
+def asset_hash(rel_path: str) -> str:
+    data = (ROOT / rel_path).read_bytes()
+    return hashlib.sha256(data).hexdigest()[:8]
 
 
 def require_non_empty_str(obj: dict, key: str, source: str) -> str:
@@ -213,6 +219,10 @@ def render_page(
     title = f"晨光 · Daily Verse — {entry['refZh']} · {entry['refEn']}"
     desc = f"{entry['dateDot']} {entry['refZh']} ({entry['versionZh']}) · {entry['refEn']} ({entry['versionEn']}) — {entry['snippet']}"
     watermark_class = "hero-watermark tabular is-long" if len(entry["chapterVerse"]) > 4 else "hero-watermark tabular"
+    styles_ver = asset_hash("assets/styles.css")
+    app_ver = asset_hash("assets/app.js")
+    favicon_ver = asset_hash("assets/icons/favicon.svg")
+    apple_ver = asset_hash("assets/icons/apple-touch-icon.png")
 
     prev_svg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>'
     next_svg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>'
@@ -294,15 +304,15 @@ def render_page(
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="晨光" />
   <link rel="manifest" href="{esc(base)}manifest.webmanifest" />
-  <link rel="icon" type="image/svg+xml" href="{esc(base)}assets/icons/favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="{esc(base)}assets/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="{esc(base)}assets/icons/favicon.svg?v={favicon_ver}" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{esc(base)}assets/icons/apple-touch-icon.png?v={apple_ver}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
-  <link rel="stylesheet" href="{esc(base)}assets/styles.css" />
+  <link rel="stylesheet" href="{esc(base)}assets/styles.css?v={styles_ver}" />
 </head>
 <body>
   <header class="site-header">
@@ -526,7 +536,7 @@ def render_page(
   <div class="toast" id="toastEl" role="status" aria-live="polite"></div>
 
   <script id="archiveFallback" type="application/json">{archive_json}</script>
-  <script defer src="{esc(base)}assets/app.js"></script>
+  <script defer src="{esc(base)}assets/app.js?v={app_ver}"></script>
 </body>
 </html>
 """

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'daily-verse-v1';
+const CACHE_NAME = 'daily-verse-v2';
 const CORE_ASSETS = [
   './',
   './manifest.webmanifest',
@@ -61,7 +61,7 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
-      const cached = await cache.match(request);
+      const cached = (await cache.match(request)) || (await cache.match(request, { ignoreSearch: true }));
       const networkPromise = fetch(request)
         .then((res) => {
           if (res && res.ok && res.type === 'basic') {

@@ -79,6 +79,8 @@ export default {
       respHeaders.set("cache-control", "no-cache");
     } else if (upstream.status >= 400) {
       respHeaders.set("cache-control", "no-store");
+    } else if (upstream.status >= 200 && upstream.status < 300) {
+      respHeaders.set("cache-control", "public, max-age=300");
     }
 
     return new Response(request.method === "HEAD" ? null : upstream.body, {
