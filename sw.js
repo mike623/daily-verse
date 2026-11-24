@@ -1,4 +1,4 @@
-const CACHE_NAME = 'daily-verse-v2';
+const CACHE_NAME = 'daily-verse-v3';
 const CORE_ASSETS = [
   './',
   './manifest.webmanifest',

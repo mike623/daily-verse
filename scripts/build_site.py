@@ -319,10 +319,11 @@ def render_page(
     <div class="header-inner">
       <a href="{esc(base)}" class="brand" id="brandHomeLink" title="回到最新一日經文">
         <span class="brand-mark" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 17h18"/>
-            <path d="M7 17a5 5 0 0 1 10 0"/>
-            <path d="M12 5v3M6.2 8.2l1.8 1.8M17.8 8.2L16 10"/>
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <path d="M 5.2 14.3 A 8.8 8.8 0 0 1 22.8 14.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="14" cy="12.3" r="3.4" fill="var(--accent, #C84B2A)"/>
+            <path d="M 3.4 17.7 C 7.4 16.7 11.2 17.6 14 19.7 C 16.8 17.6 20.6 16.7 24.6 17.7" stroke="currentColor" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 7.2 21.4 C 9.8 20.9 12.1 21.4 14 22.7 C 15.9 21.4 18.2 20.9 20.8 21.4" stroke="currentColor" stroke-opacity="0.48" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </span>
         <span class="brand-text">
