@@ -302,8 +302,23 @@
 
   const copyLinkBtn = document.getElementById('copyLinkBtn');
   if (copyLinkBtn) {
-    copyLinkBtn.addEventListener('click', () => {
+    copyLinkBtn.addEventListener('click', async () => {
       const shareUrl = getCanonicalUrl();
+      const shareData = {
+        title: document.title,
+        url: shareUrl
+      };
+      if (
+        typeof navigator.share === 'function' &&
+        (!navigator.canShare || navigator.canShare(shareData))
+      ) {
+        try {
+          await navigator.share(shareData);
+          return;
+        } catch (err) {
+          if (err && err.name === 'AbortError') return;
+        }
+      }
       copyText(shareUrl, `已複製 ${currentDate || '今日'} 連結`);
     });
   }

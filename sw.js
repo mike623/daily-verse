@@ -1,4 +1,4 @@
-const CACHE_NAME = 'daily-verse-v3';
+const CACHE_NAME = 'daily-verse-v4';
 const CORE_ASSETS = [
   './',
   './manifest.webmanifest',
@@ -61,7 +61,7 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     caches.open(CACHE_NAME).then(async (cache) => {
-      const cached = (await cache.match(request)) || (await cache.match(request, { ignoreSearch: true }));
+      const exact = await cache.match(request);
       const networkPromise = fetch(request)
         .then((res) => {
           if (res && res.ok && res.type === 'basic') {
@@ -70,7 +70,10 @@ self.addEventListener('fetch', (event) => {
           return res;
         })
         .catch(() => null);
-      return cached || (await networkPromise) || Response.error();
+      if (exact) return exact;
+      const networkResp = await networkPromise;
+      if (networkResp) return networkResp;
+      return (await cache.match(request, { ignoreSearch: true })) || Response.error();
     })
   );
 });
