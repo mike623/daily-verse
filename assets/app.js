@@ -123,7 +123,7 @@
     if (parts.length >= 2) {
       return `${parts[0]} 年 ${parts[1]} 月`;
     }
-    return '每日歸檔';
+    return '過往經文';
   }
 
   function renderArchiveList(query) {
@@ -319,7 +319,7 @@
           if (err && err.name === 'AbortError') return;
         }
       }
-      copyText(shareUrl, `已複製 ${currentDate || '今日'} 連結`);
+      copyText(shareUrl, currentDate ? `已複製 ${currentDate} 的連結` : '已複製連結');
     });
   }
 
@@ -420,7 +420,7 @@
   window.addEventListener('appinstalled', () => {
     deferredInstallPrompt = null;
     if (installPwaBtn) installPwaBtn.hidden = true;
-    showToast('已安裝 晨光 App');
+    showToast('已安裝「晨光」App');
   });
 
   if (

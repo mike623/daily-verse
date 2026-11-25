@@ -216,8 +216,8 @@ def render_page(
     archive_manifest: list[dict],
     base: str,
 ) -> str:
-    title = f"晨光 · Daily Verse — {entry['refZh']} · {entry['refEn']}"
-    desc = f"{entry['dateDot']} {entry['refZh']} ({entry['versionZh']}) · {entry['refEn']} ({entry['versionEn']}) — {entry['snippet']}"
+    title = f"晨光 · Daily Verse｜{entry['refZh']} · {entry['refEn']}"
+    desc = f"{entry['dateDot']} {entry['refZh']} ({entry['versionZh']}) · {entry['refEn']} ({entry['versionEn']})｜{entry['snippet']}"
     watermark_class = "hero-watermark tabular is-long" if len(entry["chapterVerse"]) > 4 else "hero-watermark tabular"
     styles_ver = asset_hash("assets/styles.css")
     app_ver = asset_hash("assets/app.js")
@@ -228,16 +228,16 @@ def render_page(
     next_svg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>'
 
     if older:
-        prev_control = f'<a class="day-btn" id="prevDayBtn" href="{esc(base + older["path"])}" aria-label="前一日 ({esc(older["shortLabel"])})" title="前一日 (←)">{prev_svg}</a>'
-        footer_prev = f'<a class="footer-link" id="footerPrevBtn" href="{esc(base + older["path"])}">← 前一日 ({esc(older["shortLabel"])})</a>'
+        prev_control = f'<a class="day-btn" id="prevDayBtn" href="{esc(base + older["path"])}" aria-label="前一天（{esc(older["shortLabel"])}）" title="前一天 (←)">{prev_svg}</a>'
+        footer_prev = f'<a class="footer-link" id="footerPrevBtn" href="{esc(base + older["path"])}">← 前一天（{esc(older["shortLabel"])}）</a>'
     else:
-        prev_control = f'<span class="day-btn is-disabled" id="prevDayBtn" aria-disabled="true" title="已是最早收錄日">{prev_svg}</span>'
-        footer_prev = '<span class="footer-link is-disabled" id="footerPrevBtn" aria-disabled="true">已是最早收錄日</span>'
+        prev_control = f'<span class="day-btn is-disabled" id="prevDayBtn" aria-disabled="true" title="已是最早一篇">{prev_svg}</span>'
+        footer_prev = '<span class="footer-link is-disabled" id="footerPrevBtn" aria-disabled="true">已是最早一篇</span>'
 
     if newer:
-        next_control = f'<a class="day-btn" id="nextDayBtn" href="{esc(base + newer["path"])}" aria-label="後一日 ({esc(newer["shortLabel"])})" title="後一日 (→)">{next_svg}</a>'
+        next_control = f'<a class="day-btn" id="nextDayBtn" href="{esc(base + newer["path"])}" aria-label="後一天（{esc(newer["shortLabel"])}）" title="後一天 (→)">{next_svg}</a>'
     else:
-        next_control = f'<span class="day-btn is-disabled" id="nextDayBtn" aria-disabled="true" title="已是最新一日經文">{next_svg}</span>'
+        next_control = f'<span class="day-btn is-disabled" id="nextDayBtn" aria-disabled="true" title="已是最新一篇">{next_svg}</span>'
 
     ctx_html = "\n                ".join(f"<p>{esc(p)}</p>" for p in entry["contextParagraphs"])
     cross_refs_html = "\n                ".join(
@@ -317,7 +317,7 @@ def render_page(
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a href="{esc(base)}" class="brand" id="brandHomeLink" title="回到最新一日經文">
+      <a href="{esc(base)}" class="brand" id="brandHomeLink" title="回到最新一篇">
         <span class="brand-mark" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
             <path d="M 5.2 14.3 A 8.8 8.8 0 0 1 22.8 14.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -342,12 +342,12 @@ def render_page(
       </nav>
 
       <div class="header-actions">
-        <button type="button" class="ghost-icon-btn" id="openArchiveBtn" aria-haspopup="dialog" aria-controls="archiveDrawer" aria-label="開啟每日經文歸檔" title="經文歸檔 (A)">
+        <button type="button" class="ghost-icon-btn" id="openArchiveBtn" aria-haspopup="dialog" aria-controls="archiveDrawer" aria-label="開啟過往經文" title="過往經文 (A)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="4" width="18" height="18" rx="2"/>
             <path d="M16 2v4M8 2v4M3 10h18"/>
           </svg>
-          <span class="archive-label">歸檔</span>
+          <span class="archive-label">過往經文</span>
         </button>
         <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="themeToggleBtn" aria-label="切換淺色或深色閱讀模式" title="切換閱讀模式 (T)">
           <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true">
@@ -428,7 +428,7 @@ def render_page(
             </button>
             <button type="button" class="study-tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice">
               <span class="tab-num tabular">02</span>
-              <span>實踐與張力</span>
+              <span>實踐與難處</span>
             </button>
             <button type="button" class="study-tab" role="tab" id="tab-workplace" aria-controls="panel-workplace" aria-selected="false" data-tab="workplace">
               <span class="tab-num tabular">03</span>
@@ -442,7 +442,7 @@ def render_page(
         <section class="study-panel" id="panel-context" role="tabpanel" aria-labelledby="tab-context">
           <div class="panel-expanded-head">
             <span class="panel-expanded-num tabular">01</span>
-            <h2 class="panel-expanded-title">經文背景、脈絡與相似段落</h2>
+            <h2 class="panel-expanded-title">經文背景與相關經文</h2>
           </div>{render_word_study(entry['wordStudy'])}
 
           <div class="context-split">
@@ -454,7 +454,7 @@ def render_page(
             </div>
 
             <div>
-              <h3 class="subsection-heading">相似段落與跨卷對照</h3>
+              <h3 class="subsection-heading">相關經文</h3>
               <ul class="crossref-list">
                 {cross_refs_html}
               </ul>
@@ -465,19 +465,19 @@ def render_page(
         <section class="study-panel" id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" hidden>
           <div class="panel-expanded-head">
             <span class="panel-expanded-num tabular">02</span>
-            <h2 class="panel-expanded-title">日常實踐方式與現實難處</h2>
+            <h2 class="panel-expanded-title">日常實踐與現實難處</h2>
           </div>
 
           <div class="practice-grid">
             <div>
-              <h3 class="column-label">日常實踐 · 微習慣</h3>
+              <h3 class="column-label">日常小習慣</h3>
               <ol class="habit-list">
                 {habits_html}
               </ol>
             </div>
 
             <div class="tensions-panel">
-              <h3 class="column-label">現實難處 · 真實張力</h3>
+              <h3 class="column-label">現實難處</h3>
               <ul class="tension-list">
                 {tensions_html}
               </ul>
@@ -488,7 +488,7 @@ def render_page(
         <section class="study-panel" id="panel-workplace" role="tabpanel" aria-labelledby="tab-workplace" hidden>
           <div class="panel-expanded-head">
             <span class="panel-expanded-num tabular">03</span>
-            <h2 class="panel-expanded-title">他人如何把這節經文用在日常工作</h2>
+            <h2 class="panel-expanded-title">別人怎麼把這節經文用在工作上</h2>
           </div>
 
           <div class="workplace-grid">
@@ -502,7 +502,7 @@ def render_page(
   <footer class="site-footer">
     <div class="footer-links">
       {footer_prev}
-      <button type="button" class="footer-link" id="footerArchiveBtn">瀏覽完整歸檔</button>
+      <button type="button" class="footer-link" id="footerArchiveBtn">瀏覽過往經文</button>
       <button type="button" class="footer-link" id="installPwaBtn" hidden>安裝 App</button>
     </div>
     <span class="tabular">verse.namike.me · 每日雙語經文與默想</span>
@@ -511,8 +511,8 @@ def render_page(
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
   <aside class="archive-drawer" id="archiveDrawer" role="dialog" aria-modal="true" aria-labelledby="archiveDrawerTitle" hidden>
     <div class="drawer-header">
-      <h2 class="drawer-title" id="archiveDrawerTitle">每日經文歸檔</h2>
-      <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="closeArchiveBtn" aria-label="關閉歸檔視窗">
+      <h2 class="drawer-title" id="archiveDrawerTitle">過往經文</h2>
+      <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="closeArchiveBtn" aria-label="關閉過往經文">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M18 6L6 18M6 6l12 12"/>
         </svg>
@@ -530,7 +530,7 @@ def render_page(
     </div>
     <div class="drawer-body" id="archiveBody">
       <div id="archiveGroups"></div>
-      <p class="archive-empty" id="archiveEmpty" hidden>找不到符合條件的每日默想紀錄。</p>
+      <p class="archive-empty" id="archiveEmpty" hidden>找不到符合的日期或經文。</p>
     </div>
   </aside>
 
