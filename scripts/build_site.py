@@ -312,6 +312,7 @@ def render_page(
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
+  <style>.skip-link{{position:absolute;left:12px;top:-48px;z-index:100}}.skip-link:focus{{top:12px}}</style>
   <link rel="stylesheet" href="{esc(base)}assets/styles.css?v={styles_ver}" />
 </head>
 <body>
