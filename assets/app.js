@@ -36,8 +36,11 @@
 
   function showToast(msg) {
     if (!toastEl) return;
-    toastEl.textContent = msg;
+    toastEl.textContent = '';
     toastEl.classList.add('visible');
+    setTimeout(() => {
+      toastEl.textContent = msg;
+    }, 50);
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toastEl.classList.remove('visible');
@@ -50,6 +53,10 @@
     if (themeIconSun) themeIconSun.style.display = isDark ? 'block' : 'none';
     if (themeIconMoon) themeIconMoon.style.display = isDark ? 'none' : 'block';
     if (themeColorMeta) themeColorMeta.setAttribute('content', isDark ? '#12110F' : '#F8F4EC');
+    if (themeToggleBtn) {
+      themeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      themeToggleBtn.setAttribute('aria-label', '深色模式');
+    }
     try {
       localStorage.setItem('daily-verse-theme', theme);
     } catch (_) {}
@@ -85,12 +92,12 @@
   function syncStudyView() {
     if (!studySanctuary || !expandAllBtn) return;
     studySanctuary.setAttribute('data-expanded', isExpanded ? 'true' : 'false');
-    expandAllBtn.setAttribute('aria-pressed', isExpanded ? 'true' : 'false');
     expandAllBtn.textContent = isExpanded ? '分頁閱讀' : '展開全文';
 
     tabButtons.forEach((btn) => {
       const isCurrent = btn.getAttribute('data-tab') === activeTab;
       btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+      btn.setAttribute('tabindex', isCurrent ? '0' : '-1');
     });
 
     Object.keys(tabPanels).forEach((key) => {
@@ -108,6 +115,26 @@
         isExpanded = false;
       }
       syncStudyView();
+    });
+  });
+
+  const tabOrder = ['context', 'practice', 'workplace'];
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('keydown', (ev) => {
+      const idx = tabOrder.indexOf(btn.getAttribute('data-tab'));
+      let nextIdx = null;
+      if (ev.key === 'ArrowRight') nextIdx = (idx + 1) % tabOrder.length;
+      else if (ev.key === 'ArrowLeft') nextIdx = (idx - 1 + tabOrder.length) % tabOrder.length;
+      else if (ev.key === 'Home') nextIdx = 0;
+      else if (ev.key === 'End') nextIdx = tabOrder.length - 1;
+      if (nextIdx === null) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      activeTab = tabOrder[nextIdx];
+      isExpanded = false;
+      syncStudyView();
+      const target = tabButtons.find((b) => b.getAttribute('data-tab') === activeTab);
+      if (target) target.focus();
     });
   });
 
@@ -141,6 +168,12 @@
 
     archiveGroups.innerHTML = '';
     archiveEmpty.hidden = filtered.length > 0;
+    const statusEl = document.getElementById('archiveStatus');
+    if (statusEl && q) {
+      statusEl.textContent = filtered.length ? `找到 ${filtered.length} 篇` : '找不到符合的日期或經文';
+    } else if (statusEl) {
+      statusEl.textContent = '';
+    }
     if (filtered.length === 0) return;
 
     const groups = new Map();
@@ -225,8 +258,25 @@
     } catch (_) {}
   }
 
+  const backgroundEls = Array.from(document.querySelectorAll('.skip-link, .site-header, main, .site-footer'));
+  let drawerOpener = null;
+
+  function setBackgroundInert(on) {
+    backgroundEls.forEach((el) => {
+      if (on) {
+        el.setAttribute('inert', '');
+        el.setAttribute('aria-hidden', 'true');
+      } else {
+        el.removeAttribute('inert');
+        el.removeAttribute('aria-hidden');
+      }
+    });
+  }
+
   function openDrawer() {
     if (!archiveDrawer || !drawerBackdrop) return;
+    drawerOpener = document.activeElement;
+    setBackgroundInert(true);
     archiveDrawer.hidden = false;
     drawerBackdrop.hidden = false;
     requestAnimationFrame(() => {
@@ -240,6 +290,10 @@
     if (!archiveDrawer || !drawerBackdrop) return;
     archiveDrawer.classList.remove('open');
     drawerBackdrop.classList.remove('open');
+    setBackgroundInert(false);
+    const opener = drawerOpener && document.contains(drawerOpener) ? drawerOpener : openArchiveBtn;
+    if (opener && typeof opener.focus === 'function') opener.focus();
+    drawerOpener = null;
     setTimeout(() => {
       if (!archiveDrawer.classList.contains('open')) {
         archiveDrawer.hidden = true;
@@ -335,20 +389,33 @@
   }
 
   document.addEventListener('keydown', (ev) => {
-    const activeEl = document.activeElement;
-    const activeTag = activeEl ? activeEl.tagName : '';
-    if (ev.key === 'Escape' && archiveDrawer && archiveDrawer.classList.contains('open')) {
+    const drawerOpen = archiveDrawer && archiveDrawer.classList.contains('open');
+    if (ev.key === 'Escape' && drawerOpen) {
       closeDrawer();
       return;
     }
-    if (
-      activeTag === 'INPUT' ||
-      activeTag === 'TEXTAREA' ||
-      activeTag === 'SELECT' ||
-      (activeEl && activeEl.isContentEditable)
-    ) {
+    if (ev.key === 'Tab' && drawerOpen) {
+      const focusables = Array.from(
+        archiveDrawer.querySelectorAll('button, a[href], input, [tabindex]:not([tabindex="-1"])')
+      ).filter((el) => !el.hidden && el.offsetParent !== null);
+      if (focusables.length) {
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (ev.shiftKey && document.activeElement === first) {
+          ev.preventDefault();
+          last.focus();
+        } else if (!ev.shiftKey && document.activeElement === last) {
+          ev.preventDefault();
+          first.focus();
+        }
+      }
       return;
     }
+    // Arrow keys switch days only when nothing interactive has focus, so they never
+    // fight screen-reader or form navigation. No single-letter shortcuts (WCAG 2.1.4).
+    if (drawerOpen || ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey) return;
+    const activeEl = document.activeElement;
+    if (activeEl && activeEl !== document.body && activeEl.id !== 'top') return;
 
     if (ev.key === 'ArrowLeft') {
       const prevEl = document.getElementById('prevDayBtn');
@@ -360,24 +427,6 @@
       if (nextEl && nextEl.tagName === 'A' && nextEl.getAttribute('href')) {
         window.location.href = nextEl.href;
       }
-    } else if (ev.key === '1') {
-      activeTab = 'context';
-      isExpanded = false;
-      syncStudyView();
-    } else if (ev.key === '2') {
-      activeTab = 'practice';
-      isExpanded = false;
-      syncStudyView();
-    } else if (ev.key === '3') {
-      activeTab = 'workplace';
-      isExpanded = false;
-      syncStudyView();
-    } else if (ev.key.toLowerCase() === 'a') {
-      if (archiveDrawer && archiveDrawer.classList.contains('open')) closeDrawer();
-      else openDrawer();
-    } else if (ev.key.toLowerCase() === 't') {
-      const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
     }
   });
 

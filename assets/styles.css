@@ -5,11 +5,12 @@
   --surface-elevated: #FBF8F2;
   --fg: #1A1714;
   --fg-secondary: #48423B;
-  --muted: #72685E;
+  --muted: #675E55;
   --border: rgba(26, 23, 20, 0.11);
   --border-strong: rgba(26, 23, 20, 0.22);
   --accent: #C84B2A;
   --accent-soft: rgba(200, 75, 42, 0.08);
+  --accent-text: #A93D20;
   --backdrop: rgba(22, 20, 18, 0.44);
 
   /* Hero Broadsheet Stage (Dramatic Focal Contrast on Alabaster) */
@@ -50,6 +51,7 @@
   --border-strong: rgba(245, 239, 228, 0.24);
   --accent: #E07852;
   --accent-soft: rgba(224, 120, 82, 0.14);
+  --accent-text: #E07852;
   --backdrop: rgba(8, 7, 6, 0.68);
 
   --hero-bg: #1C1915;
@@ -102,9 +104,43 @@ button {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--border-strong);
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--fg);
   outline-offset: 2px;
+}
+
+.hero-stage button:focus-visible,
+.hero-stage a:focus-visible {
+  outline-color: var(--hero-fg);
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  z-index: 100;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background-color: var(--fg);
+  color: var(--bg);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .tabular {
@@ -559,6 +595,20 @@ main {
   display: flex;
 }
 
+/* Keep panel headings in the accessibility tree while visually hidden in tab view */
+.study-sanctuary:not([data-expanded="true"]) .panel-expanded-head {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .panel-expanded-num {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -959,6 +1009,11 @@ main {
   border-bottom-color: var(--accent);
 }
 
+.drawer-search:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
 .drawer-body {
   flex: 1;
   overflow-y: auto;
@@ -1010,7 +1065,7 @@ main {
 }
 
 .archive-entry-btn.is-active .archive-date {
-  color: var(--accent);
+  color: var(--accent-text, var(--accent));
 }
 
 .archive-ref {
@@ -1236,8 +1291,8 @@ a.footer-link {
 }
 
 .footer-link.is-disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+  color: var(--muted);
+  cursor: default;
   pointer-events: none;
 }
 

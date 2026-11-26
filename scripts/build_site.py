@@ -196,7 +196,7 @@ def render_word_study(ws: dict | None) -> str:
     if not ws:
         return ""
     return f"""
-          <aside class="word-study" aria-label="原文詞彙筆記">
+          <section class="word-study" aria-label="原文詞彙筆記">
             <div class="word-study-top">
               <span class="word-study-tag">原文詞彙筆記</span>
               <div class="word-study-lexeme">
@@ -206,7 +206,7 @@ def render_word_study(ws: dict | None) -> str:
               <span class="word-study-gloss">{esc(ws['gloss'])}</span>
             </div>
             <p>{esc(ws['body'])}</p>
-          </aside>"""
+          </section>"""
 
 
 def render_page(
@@ -228,16 +228,16 @@ def render_page(
     next_svg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>'
 
     if older:
-        prev_control = f'<a class="day-btn" id="prevDayBtn" href="{esc(base + older["path"])}" aria-label="前一天（{esc(older["shortLabel"])}）" title="前一天 (←)">{prev_svg}</a>'
+        prev_control = f'<a class="day-btn" id="prevDayBtn" href="{esc(base + older["path"])}" aria-label="前一天（{esc(older["shortLabel"])}）" title="前一天">{prev_svg}</a>'
         footer_prev = f'<a class="footer-link" id="footerPrevBtn" href="{esc(base + older["path"])}">← 前一天（{esc(older["shortLabel"])}）</a>'
     else:
-        prev_control = f'<span class="day-btn is-disabled" id="prevDayBtn" aria-disabled="true" title="已是最早一篇">{prev_svg}</span>'
-        footer_prev = '<span class="footer-link is-disabled" id="footerPrevBtn" aria-disabled="true">已是最早一篇</span>'
+        prev_control = f'<span class="day-btn is-disabled" id="prevDayBtn" role="link" aria-disabled="true" aria-label="前一天：已是最早一篇" title="已是最早一篇">{prev_svg}</span>'
+        footer_prev = '<span class="footer-link is-disabled" id="footerPrevBtn">已是最早一篇</span>'
 
     if newer:
-        next_control = f'<a class="day-btn" id="nextDayBtn" href="{esc(base + newer["path"])}" aria-label="後一天（{esc(newer["shortLabel"])}）" title="後一天 (→)">{next_svg}</a>'
+        next_control = f'<a class="day-btn" id="nextDayBtn" href="{esc(base + newer["path"])}" aria-label="後一天（{esc(newer["shortLabel"])}）" title="後一天">{next_svg}</a>'
     else:
-        next_control = f'<span class="day-btn is-disabled" id="nextDayBtn" aria-disabled="true" title="已是最新一篇">{next_svg}</span>'
+        next_control = f'<span class="day-btn is-disabled" id="nextDayBtn" role="link" aria-disabled="true" aria-label="後一天：已是最新一篇" title="已是最新一篇">{next_svg}</span>'
 
     ctx_html = "\n                ".join(f"<p>{esc(p)}</p>" for p in entry["contextParagraphs"])
     cross_refs_html = "\n                ".join(
@@ -249,7 +249,7 @@ def render_page(
     )
     habits_html = "\n                ".join(
         f"""<li class="habit-item">
-                  <span class="habit-index tabular">{i:02d}</span>
+                  <span class="habit-index tabular" aria-hidden="true">{i:02d}</span>
                   <div>
                     <h4 class="item-title">{esc(h['title'])}</h4>
                     <p class="item-body">{esc(h['body'])}</p>
@@ -315,9 +315,10 @@ def render_page(
   <link rel="stylesheet" href="{esc(base)}assets/styles.css?v={styles_ver}" />
 </head>
 <body>
+  <a class="skip-link" href="#top">跳到今日經文</a>
   <header class="site-header">
     <div class="header-inner">
-      <a href="{esc(base)}" class="brand" id="brandHomeLink" title="回到最新一篇">
+      <a href="{esc(base)}" class="brand" id="brandHomeLink" title="回到最新一篇" aria-label="晨光 Daily Verse，回到最新一篇">
         <span class="brand-mark" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
             <path d="M 5.2 14.3 A 8.8 8.8 0 0 1 22.8 14.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -328,13 +329,13 @@ def render_page(
         </span>
         <span class="brand-text">
           <span class="brand-zh">晨光</span>
-          <span class="brand-en">Daily Verse</span>
+          <span class="brand-en" lang="en">Daily Verse</span>
         </span>
       </a>
 
       <nav class="day-nav" aria-label="每日經文切換">
         {prev_control}
-        <span class="day-current tabular">
+        <span class="day-current tabular" aria-current="date">
           <span class="date-full" id="currentDateFull">{esc(entry['dateDot'])}</span>
           <span class="date-short" id="currentDateShort">{esc(entry['shortLabel'])}</span>
         </span>
@@ -342,14 +343,14 @@ def render_page(
       </nav>
 
       <div class="header-actions">
-        <button type="button" class="ghost-icon-btn" id="openArchiveBtn" aria-haspopup="dialog" aria-controls="archiveDrawer" aria-label="開啟過往經文" title="過往經文 (A)">
+        <button type="button" class="ghost-icon-btn" id="openArchiveBtn" aria-haspopup="dialog" aria-controls="archiveDrawer" aria-label="開啟過往經文" title="過往經文">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="4" width="18" height="18" rx="2"/>
             <path d="M16 2v4M8 2v4M3 10h18"/>
           </svg>
-          <span class="archive-label">過往經文</span>
+          <span class="archive-label" aria-hidden="true">過往經文</span>
         </button>
-        <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="themeToggleBtn" aria-label="切換淺色或深色閱讀模式" title="切換閱讀模式 (T)">
+        <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="themeToggleBtn" aria-label="深色模式" aria-pressed="false" title="切換閱讀模式">
           <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true">
             <circle cx="12" cy="12" r="4"/>
             <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
@@ -362,8 +363,8 @@ def render_page(
     </div>
   </header>
 
-  <main id="top">
-    <article id="entryRoot" aria-live="polite">
+  <main id="top" tabindex="-1">
+    <article id="entryRoot">
       <section class="hero-stage" aria-label="今日雙語經文">
         <svg class="hero-motif" viewBox="0 0 300 220" fill="none" aria-hidden="true">
           <circle cx="228" cy="96" r="144" stroke="var(--hero-arc)" stroke-width="1"/>
@@ -376,7 +377,8 @@ def render_page(
         <div class="{watermark_class}" id="heroWatermark" aria-hidden="true">{esc(entry['chapterVerse'])}</div>
 
         <div class="hero-content">
-          <div class="hero-kicker tabular" id="heroKicker">DAILY VERSE · {esc(entry['dateDot'])} · {esc(entry['weekday'])}</div>
+          <h1 class="sr-only">今日經文 {esc(entry['dateDot'])}：{esc(entry['refZh'])}</h1>
+          <div class="hero-kicker tabular" id="heroKicker"><span lang="en">DAILY VERSE</span> · {esc(entry['dateDot'])} · {esc(entry['weekday'])}</div>
 
           <blockquote class="hero-quote-zh" id="heroQuoteZh">{esc(entry['quoteZh'])}</blockquote>
 
@@ -385,19 +387,21 @@ def render_page(
           <blockquote class="hero-quote-en" id="heroQuoteEn" lang="en">{esc(entry['quoteEn'])}</blockquote>
 
           <div class="hero-footer">
-            <h1 class="hero-ref-group">
+            <p class="hero-ref-group">
               <a class="hero-ref-link" id="heroLinkZh" href="{esc(entry['linkZh'])}" target="_blank" rel="noopener noreferrer">
                 <span id="heroRefZh">{esc(entry['refZh'])}</span>
                 <span class="ref-ver" id="heroVerZh">{esc(entry['versionZh'])}</span>
+                <span class="sr-only">（在 Bible.com 新分頁開啟）</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
               </a>
               <span class="ref-sep" aria-hidden="true">·</span>
               <a class="hero-ref-link hero-ref-en" id="heroLinkEn" href="{esc(entry['linkEn'])}" target="_blank" rel="noopener noreferrer" lang="en">
                 <span id="heroRefEn">{esc(entry['refEn'])}</span>
                 <span class="ref-ver" id="heroVerEn">{esc(entry['versionEn'])}</span>
+                <span class="sr-only">(opens Bible.com in a new tab)</span>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
               </a>
-            </h1>
+            </p>
 
             <div class="hero-actions">
               <button type="button" class="hero-ghost-btn" id="copyVerseBtn">
@@ -422,26 +426,26 @@ def render_page(
       <section class="study-sanctuary" id="studySanctuary" data-expanded="false" aria-label="經文默想與應用">
         <div class="study-tabs-bar">
           <div class="tab-list" role="tablist" aria-label="經文研讀分頁">
-            <button type="button" class="study-tab" role="tab" id="tab-context" aria-controls="panel-context" aria-selected="true" data-tab="context">
-              <span class="tab-num tabular">01</span>
+            <button type="button" class="study-tab" role="tab" id="tab-context" aria-controls="panel-context" aria-selected="true" tabindex="0" data-tab="context">
+              <span class="tab-num tabular" aria-hidden="true">01</span>
               <span>經文脈絡</span>
             </button>
-            <button type="button" class="study-tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice">
-              <span class="tab-num tabular">02</span>
+            <button type="button" class="study-tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" tabindex="-1" data-tab="practice">
+              <span class="tab-num tabular" aria-hidden="true">02</span>
               <span>實踐與難處</span>
             </button>
-            <button type="button" class="study-tab" role="tab" id="tab-workplace" aria-controls="panel-workplace" aria-selected="false" data-tab="workplace">
-              <span class="tab-num tabular">03</span>
+            <button type="button" class="study-tab" role="tab" id="tab-workplace" aria-controls="panel-workplace" aria-selected="false" tabindex="-1" data-tab="workplace">
+              <span class="tab-num tabular" aria-hidden="true">03</span>
               <span>職場應用</span>
             </button>
           </div>
 
-          <button type="button" class="expand-all-btn" id="expandAllBtn" aria-pressed="false">展開全文</button>
+          <button type="button" class="expand-all-btn" id="expandAllBtn" aria-controls="panel-context panel-practice panel-workplace">展開全文</button>
         </div>
 
-        <section class="study-panel" id="panel-context" role="tabpanel" aria-labelledby="tab-context">
+        <section class="study-panel" id="panel-context" role="tabpanel" aria-labelledby="tab-context" tabindex="0">
           <div class="panel-expanded-head">
-            <span class="panel-expanded-num tabular">01</span>
+            <span class="panel-expanded-num tabular" aria-hidden="true">01</span>
             <h2 class="panel-expanded-title">經文背景與相關經文</h2>
           </div>{render_word_study(entry['wordStudy'])}
 
@@ -462,9 +466,9 @@ def render_page(
           </div>
         </section>
 
-        <section class="study-panel" id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" hidden>
+        <section class="study-panel" id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" tabindex="0" hidden>
           <div class="panel-expanded-head">
-            <span class="panel-expanded-num tabular">02</span>
+            <span class="panel-expanded-num tabular" aria-hidden="true">02</span>
             <h2 class="panel-expanded-title">日常實踐與現實難處</h2>
           </div>
 
@@ -485,9 +489,9 @@ def render_page(
           </div>
         </section>
 
-        <section class="study-panel" id="panel-workplace" role="tabpanel" aria-labelledby="tab-workplace" hidden>
+        <section class="study-panel" id="panel-workplace" role="tabpanel" aria-labelledby="tab-workplace" tabindex="0" hidden>
           <div class="panel-expanded-head">
-            <span class="panel-expanded-num tabular">03</span>
+            <span class="panel-expanded-num tabular" aria-hidden="true">03</span>
             <h2 class="panel-expanded-title">別人怎麼把這節經文用在工作上</h2>
           </div>
 
@@ -509,7 +513,7 @@ def render_page(
   </footer>
 
   <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
-  <aside class="archive-drawer" id="archiveDrawer" role="dialog" aria-modal="true" aria-labelledby="archiveDrawerTitle" hidden>
+  <div class="archive-drawer" id="archiveDrawer" role="dialog" aria-modal="true" aria-labelledby="archiveDrawerTitle" hidden>
     <div class="drawer-header">
       <h2 class="drawer-title" id="archiveDrawerTitle">過往經文</h2>
       <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="closeArchiveBtn" aria-label="關閉過往經文">
@@ -530,11 +534,12 @@ def render_page(
     </div>
     <div class="drawer-body" id="archiveBody">
       <div id="archiveGroups"></div>
+      <p class="sr-only" id="archiveStatus" role="status" aria-live="polite"></p>
       <p class="archive-empty" id="archiveEmpty" hidden>找不到符合的日期或經文。</p>
     </div>
-  </aside>
+  </div>
 
-  <div class="toast" id="toastEl" role="status" aria-live="polite"></div>
+  <div class="toast" id="toastEl" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script id="archiveFallback" type="application/json">{archive_json}</script>
   <script defer src="{esc(base)}assets/app.js?v={app_ver}"></script>
