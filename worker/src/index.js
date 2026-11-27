@@ -34,6 +34,15 @@ export default {
     }
 
     const reqUrl = new URL(request.url);
+    // Day pages moved under /verse/; keep old /YYYY/MM/DD/ links working.
+    const oldDay = reqUrl.pathname.match(/^\/(\d{4})\/(\d{2})\/(\d{2})(\/.*)?$/);
+    if (oldDay) {
+      const rest = oldDay[4] && oldDay[4] !== "/" ? oldDay[4] : "/";
+      return Response.redirect(
+        `${PUBLIC_ORIGIN}/verse/${oldDay[1]}/${oldDay[2]}/${oldDay[3]}${rest}${reqUrl.search}`,
+        301
+      );
+    }
     const isSw = reqUrl.pathname === "/sw.js";
     const upstreamUrl = new URL(
       `${UPSTREAM_ORIGIN}${UPSTREAM_BASE}${reqUrl.pathname}${reqUrl.search}`

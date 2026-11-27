@@ -201,7 +201,7 @@ def load_and_validate_entry(path: Path) -> dict:
         "dateDot": f"{yyyy}.{mm}.{dd}",
         "shortLabel": f"{mm}/{dd}",
         "weekday": weekday_val,
-        "path": f"{yyyy}/{mm}/{dd}/",
+        "path": f"verse/{yyyy}/{mm}/{dd}/",
         "chapterVerse": raw["chapterVerse"].strip(),
         "refZh": raw["refZh"].strip(),
         "versionZh": raw["versionZh"].strip(),
@@ -620,7 +620,7 @@ def build() -> None:
 
         day_dir = ROOT / entry["path"]
         day_dir.mkdir(parents=True, exist_ok=True)
-        day_html = render_page(entry, older=older, newer=newer, archive_manifest=manifest, base="../../../")
+        day_html = render_page(entry, older=older, newer=newer, archive_manifest=manifest, base="../../../../")
         (day_dir / "index.html").write_text(day_html, encoding="utf-8")
         built_paths.append(entry["path"] + "index.html")
 
