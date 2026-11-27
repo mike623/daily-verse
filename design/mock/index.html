@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>晨光 · Daily Verse — 約書亞記 1:8 · Joshua 1:8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      /* Light — Alabaster & Ink */
+      --bg: #F8F4EC;
+      --surface: #EFE8DB;
+      --surface-elevated: #FBF8F2;
+      --fg: #1A1714;
+      --fg-secondary: #48423B;
+      --muted: #72685E;
+      --border: rgba(26, 23, 20, 0.11);
+      --border-strong: rgba(26, 23, 20, 0.22);
+      --accent: #C84B2A;
+      --accent-soft: rgba(200, 75, 42, 0.08);
+      --backdrop: rgba(22, 20, 18, 0.44);
+
+      /* Hero Broadsheet Stage (Dramatic Focal Contrast on Alabaster) */
+      --hero-bg: #161412;
+      --hero-fg: #F6F1E7;
+      --hero-fg-muted: rgba(246, 241, 231, 0.76);
+      --hero-fg-subtle: rgba(246, 241, 231, 0.54);
+      --hero-border: rgba(246, 241, 231, 0.14);
+      --hero-border-strong: rgba(246, 241, 231, 0.30);
+      --hero-dash: rgba(246, 241, 231, 0.34);
+      --hero-arc: rgba(246, 241, 231, 0.11);
+      --hero-arc-warm: rgba(200, 75, 42, 0.42);
+      --hero-numeral: rgba(246, 241, 231, 0.055);
+      --hero-stage-ring: rgba(22, 20, 18, 0.10);
+      --hero-btn-hover: rgba(246, 241, 231, 0.08);
+
+      --font-serif: 'Newsreader', 'Noto Serif TC', 'Iowan Old Style', 'Songti TC', 'Georgia', serif;
+      --font-sans: 'Source Sans 3', 'Noto Sans TC', 'PingFang TC', 'Hiragino Sans CNS', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+      --container: 960px;
+      --reading: 66ch;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-hero: 18px;
+      --header-h: 64px;
+    }
+
+    [data-theme="dark"] {
+      /* Dark — Candlelight Obsidian */
+      --bg: #12110F;
+      --surface: #1B1815;
+      --surface-elevated: #211D19;
+      --fg: #F5EFE4;
+      --fg-secondary: #C8C0B4;
+      --muted: #988E82;
+      --border: rgba(245, 239, 228, 0.11);
+      --border-strong: rgba(245, 239, 228, 0.24);
+      --accent: #E07852;
+      --accent-soft: rgba(224, 120, 82, 0.14);
+      --backdrop: rgba(8, 7, 6, 0.68);
+
+      --hero-bg: #1C1915;
+      --hero-fg: #F5EFE4;
+      --hero-fg-muted: rgba(245, 239, 228, 0.78);
+      --hero-fg-subtle: rgba(245, 239, 228, 0.54);
+      --hero-border: rgba(245, 239, 228, 0.13);
+      --hero-border-strong: rgba(245, 239, 228, 0.30);
+      --hero-dash: rgba(245, 239, 228, 0.34);
+      --hero-arc: rgba(224, 120, 82, 0.15);
+      --hero-arc-warm: rgba(224, 120, 82, 0.45);
+      --hero-numeral: rgba(245, 239, 228, 0.05);
+      --hero-stage-ring: rgba(224, 120, 82, 0.26);
+      --hero-btn-hover: rgba(245, 239, 228, 0.08);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16.5px;
+      line-height: 1.82;
+      text-align: left;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--border-strong);
+      outline-offset: 2px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Single-Row Borderless Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background-color: var(--bg);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 180ms ease;
+    }
+
+    .header-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 40px);
+      height: var(--header-h);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      justify-self: start;
+      min-height: 40px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--fg);
+    }
+
+    .brand-text {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .brand-zh {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-en {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .day-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      justify-self: center;
+    }
+
+    .day-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      color: var(--fg-secondary);
+      transition: background-color 140ms ease, color 140ms ease;
+    }
+
+    .day-btn:hover:not(:disabled) {
+      background-color: var(--surface);
+      color: var(--fg);
+    }
+
+    .day-btn:disabled {
+      opacity: 0.28;
+      cursor: not-allowed;
+    }
+
+    .day-current {
+      padding: 0 6px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--fg);
+      white-space: nowrap;
+    }
+
+    .date-short {
+      display: none;
+    }
+
+    .header-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      justify-self: end;
+    }
+
+    .ghost-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 38px;
+      padding: 0 10px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--fg-secondary);
+      transition: background-color 140ms ease, color 140ms ease;
+    }
+
+    .ghost-icon-btn:hover {
+      background-color: var(--surface);
+      color: var(--fg);
+    }
+
+    .ghost-icon-btn--square {
+      padding: 0;
+      width: 38px;
+    }
+
+    /* Main Container */
+    main {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: clamp(18px, 3vw, 28px) clamp(16px, 4vw, 40px) 64px;
+    }
+
+    /* Hero Broadsheet Focal Stage */
+    .hero-stage {
+      position: relative;
+      overflow: hidden;
+      background-color: var(--hero-bg);
+      color: var(--hero-fg);
+      border: 1px solid var(--hero-stage-ring);
+      border-radius: var(--radius-hero);
+      padding: clamp(28px, 5vw, 56px) clamp(24px, 5vw, 56px) clamp(22px, 3.6vw, 34px);
+    }
+
+    .hero-motif {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: clamp(190px, 28vw, 300px);
+      height: auto;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      right: clamp(20px, 4vw, 48px);
+      bottom: clamp(54px, 7.5vw, 72px);
+      font-family: 'Newsreader', 'Georgia', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(6rem, 13.5vw, 10.5rem);
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      color: var(--hero-numeral);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      z-index: 1;
+    }
+
+    .hero-watermark.is-long {
+      font-size: clamp(4.6rem, 10.5vw, 8.2rem);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-kicker {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: clamp(20px, 3.2vw, 32px);
+      padding-right: clamp(90px, 18vw, 180px);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--hero-fg-subtle);
+    }
+
+    .hero-quote-zh {
+      margin: 0;
+      max-width: 26em;
+      font-family: var(--font-serif);
+      font-size: clamp(1.48rem, 3vw, 2.18rem);
+      font-weight: 500;
+      line-height: 1.68;
+      letter-spacing: 0.02em;
+      color: var(--hero-fg);
+    }
+
+    .hero-dash {
+      width: 40px;
+      height: 2px;
+      margin: clamp(18px, 2.8vw, 26px) 0;
+      background-color: var(--hero-dash);
+    }
+
+    .hero-quote-en {
+      margin: 0;
+      max-width: 58ch;
+      font-family: var(--font-serif);
+      font-size: clamp(1.04rem, 1.48vw, 1.22rem);
+      font-weight: 400;
+      line-height: 1.64;
+      letter-spacing: -0.005em;
+      color: var(--hero-fg-muted);
+    }
+
+    .hero-footer {
+      margin-top: clamp(24px, 3.8vw, 36px);
+      padding-top: 18px;
+      border-top: 1px solid var(--hero-border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 20px;
+    }
+
+    .hero-ref-group {
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .hero-ref-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: var(--hero-fg);
+      border-bottom: 1px solid transparent;
+      padding: 2px 0;
+      transition: border-color 140ms ease, color 140ms ease;
+    }
+
+    .hero-ref-link:hover {
+      border-bottom-color: var(--hero-border-strong);
+    }
+
+    .hero-ref-link.hero-ref-en {
+      font-family: var(--font-serif);
+      color: var(--hero-fg-muted);
+    }
+
+    .hero-ref-link.hero-ref-en:hover {
+      color: var(--hero-fg);
+    }
+
+    .ref-ver {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--hero-fg-subtle);
+    }
+
+    .ref-sep {
+      color: var(--hero-fg-subtle);
+    }
+
+    .hero-actions {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 36px;
+      padding: 0 11px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--hero-fg-muted);
+      transition: background-color 140ms ease, color 140ms ease;
+    }
+
+    .hero-ghost-btn:hover {
+      background-color: var(--hero-btn-hover);
+      color: var(--hero-fg);
+    }
+
+    .hero-ghost-btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Sample Entry Notice */
+    .mock-notice {
+      margin: 20px 0 0;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface);
+      font-size: 13.5px;
+      color: var(--fg-secondary);
+    }
+
+    /* Tabbed Study Sanctuary */
+    .study-sanctuary {
+      margin-top: clamp(26px, 4vw, 40px);
+    }
+
+    .study-tabs-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tab-list {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 3vw, 32px);
+    }
+
+    .study-tab {
+      position: relative;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      padding: 14px 2px;
+      margin-bottom: -1px;
+      border-bottom: 2px solid transparent;
+      font-size: 14.5px;
+      font-weight: 500;
+      letter-spacing: 0.015em;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: color 140ms ease, border-color 140ms ease;
+    }
+
+    .study-tab:hover {
+      color: var(--fg);
+    }
+
+    .study-tab[aria-selected="true"] {
+      color: var(--fg);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-num {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .study-tab[aria-selected="true"] .tab-num {
+      color: var(--fg);
+    }
+
+    .expand-all-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      min-height: 36px;
+      padding: 0 6px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: color 140ms ease;
+    }
+
+    .expand-all-btn:hover {
+      color: var(--fg);
+    }
+
+    .expand-all-btn[aria-pressed="true"] {
+      color: var(--fg);
+    }
+
+    /* Study Panels */
+    .study-panel {
+      padding: clamp(28px, 4vw, 40px) 0 8px;
+    }
+
+    .study-panel[hidden] {
+      display: none;
+    }
+
+    .panel-expanded-head {
+      display: none;
+      align-items: baseline;
+      gap: 10px;
+      margin: 0 0 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .study-sanctuary[data-expanded="true"] .study-panel + .study-panel {
+      margin-top: 32px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+    }
+
+    .study-sanctuary[data-expanded="true"] .panel-expanded-head {
+      display: flex;
+    }
+
+    .panel-expanded-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .panel-expanded-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 1.32rem;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    /* Panel 01: Word Study + Context + Cross-Refs */
+    .word-study {
+      margin: 0 0 30px;
+      padding: 20px clamp(18px, 3vw, 28px);
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 12px 28px;
+      align-items: start;
+    }
+
+    .word-study-top {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .word-study-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .word-study-lexeme {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .word-study-hebrew {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--fg);
+      direction: rtl;
+      unicode-bidi: isolate;
+    }
+
+    .word-study-translit {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 17px;
+      color: var(--fg);
+    }
+
+    .word-study-gloss {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .word-study p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.82;
+      color: var(--fg-secondary);
+      max-width: 62ch;
+    }
+
+    .context-split {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 28px 44px;
+      align-items: start;
+    }
+
+    .prose-column {
+      max-width: var(--reading);
+      margin-bottom: 0;
+    }
+
+    .prose-column p {
+      margin: 0 0 16px;
+      color: var(--fg-secondary);
+      line-height: 1.86;
+      letter-spacing: 0.01em;
+    }
+
+    .prose-column p:last-child {
+      margin-bottom: 0;
+    }
+
+    .subsection-heading {
+      margin: 0 0 12px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .crossref-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .crossref-item {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: 4px 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+
+    .crossref-ref {
+      font-family: var(--font-serif);
+      font-size: 15.5px;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .crossref-note {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--fg-secondary);
+    }
+
+    /* Panel 02: Practice & Tensions */
+    .practice-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px 44px;
+      align-items: start;
+    }
+
+    .column-label {
+      margin: 0 0 16px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .habit-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .habit-item {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+
+    .habit-index {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      padding-top: 4px;
+    }
+
+    .item-title {
+      margin: 0 0 5px;
+      font-family: var(--font-serif);
+      font-size: 17.5px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--fg);
+    }
+
+    .item-body {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.78;
+      color: var(--fg-secondary);
+    }
+
+    .tensions-panel {
+      background-color: var(--surface);
+      border-radius: var(--radius-md);
+      padding: 22px clamp(18px, 3vw, 26px);
+    }
+
+    .tension-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tension-item {
+      padding: 15px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .tension-item:first-child {
+      padding-top: 2px;
+      border-top: 0;
+    }
+
+    .tension-item:last-child {
+      padding-bottom: 0;
+    }
+
+    /* Panel 03: Workplace 2x2 Matrix */
+    .workplace-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .workplace-cell {
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .workplace-cell:nth-child(odd) {
+      padding-right: 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    .workplace-cell:nth-child(even) {
+      padding-left: 28px;
+    }
+
+    .workplace-cell:nth-child(n+3) {
+      border-top: 1px solid var(--border);
+    }
+
+    .workplace-kicker {
+      display: inline-block;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .workplace-source {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    /* Sample Archive Section */
+    .sample-section {
+      padding: 28px 0 8px;
+    }
+
+    .sample-section[hidden] {
+      display: none;
+    }
+
+    /* Quiet Footer */
+    .site-footer {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 24px clamp(16px, 4vw, 40px) 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .footer-link {
+      font-weight: 500;
+      color: var(--fg-secondary);
+      border-bottom: 1px solid var(--border-strong);
+      padding-bottom: 1px;
+      transition: color 140ms ease, border-color 140ms ease;
+    }
+
+    .footer-link:hover:not(:disabled) {
+      color: var(--fg);
+      border-bottom-color: var(--fg);
+    }
+
+    .footer-link:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Archive Slide-Over Drawer */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background-color: var(--backdrop);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .archive-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      width: min(440px, 100vw);
+      background-color: var(--surface-elevated);
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .archive-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-title {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .drawer-search-wrap {
+      padding: 14px 24px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-search {
+      width: 100%;
+      padding: 10px 0;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--border-strong);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--fg);
+    }
+
+    .drawer-search::placeholder {
+      color: var(--muted);
+    }
+
+    .drawer-search:focus {
+      outline: none;
+      border-bottom-color: var(--accent);
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px 24px 32px;
+    }
+
+    .archive-month {
+      margin: 0 0 10px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .archive-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .archive-entry-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 4px 14px;
+      align-items: baseline;
+      transition: background-color 140ms ease;
+    }
+
+    .archive-entry-btn:hover {
+      background-color: var(--surface);
+    }
+
+    .archive-entry-btn.is-active {
+      background-color: var(--accent-soft);
+    }
+
+    .archive-date {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .archive-entry-btn.is-active .archive-date {
+      color: var(--accent);
+    }
+
+    .archive-ref {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--fg);
+    }
+
+    .archive-snippet {
+      grid-column: 2;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--fg-secondary);
+    }
+
+    .archive-empty {
+      padding: 28px 0;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 80;
+      transform: translate(-50%, 16px);
+      padding: 10px 18px;
+      border-radius: 999px;
+      background-color: var(--fg);
+      color: var(--bg);
+      font-size: 13.5px;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* Responsive Mobile Rules */
+    @media (max-width: 768px) {
+      :root {
+        --header-h: 56px;
+        --radius-hero: 14px;
+      }
+
+      .hero-motif {
+        top: -8px;
+        right: -8px;
+        width: 146px;
+      }
+
+      .hero-watermark {
+        bottom: 72px;
+        right: 18px;
+      }
+
+      .word-study {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .word-study-top {
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .context-split {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .crossref-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .practice-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .workplace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workplace-cell:nth-child(odd) {
+        padding-right: 0;
+        border-right: 0;
+      }
+
+      .workplace-cell:nth-child(even) {
+        padding-left: 0;
+      }
+
+      .workplace-cell {
+        padding: 20px 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .workplace-cell:first-child {
+        border-top: 0;
+      }
+
+      .archive-entry-btn {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-snippet {
+        grid-column: 1;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .brand-en {
+        display: none;
+      }
+
+      .date-full {
+        display: none;
+      }
+
+      .date-short {
+        display: inline;
+      }
+
+      .archive-label {
+        display: none;
+      }
+
+      .ghost-icon-btn {
+        width: 38px;
+        padding: 0;
+      }
+
+      .hero-kicker {
+        padding-right: 64px;
+        font-size: 10.5px;
+        letter-spacing: 0.06em;
+        margin-bottom: 18px;
+      }
+
+      .hero-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions {
+        margin-left: -10px;
+      }
+
+      .study-tabs-bar {
+        gap: 8px;
+      }
+
+      .tab-list {
+        gap: 14px;
+      }
+
+      .study-tab {
+        font-size: 13.5px;
+        gap: 5px;
+      }
+
+      .tab-num {
+        font-size: 10.5px;
+      }
+
+      .expand-all-btn {
+        font-size: 12px;
+        padding: 0 2px;
+      }
+    }
+
+    @media print {
+      .site-header,
+      .hero-actions,
+      .study-tabs-bar,
+      .site-footer,
+      .archive-drawer,
+      .drawer-backdrop,
+      .toast {
+        display: none !important;
+      }
+
+      .hero-stage {
+        border: 1px solid #333;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .study-panel {
+        display: block !important;
+      }
+
+      .study-panel + .study-panel {
+        margin-top: 28px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+      }
+
+      .panel-expanded-head {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#top" class="brand" id="brandHomeLink" title="回到最新一日經文">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 17h18"/>
+            <path d="M7 17a5 5 0 0 1 10 0"/>
+            <path d="M12 5v3M6.2 8.2l1.8 1.8M17.8 8.2L16 10"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-zh">晨光</span>
+          <span class="brand-en">Daily Verse</span>
+        </span>
+      </a>
+
+      <nav class="day-nav" aria-label="每日經文切換">
+        <button type="button" class="day-btn" id="prevDayBtn" aria-label="前一日經文" title="前一日 (←)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="day-current tabular">
+          <span class="date-full" id="currentDateFull">2026.11.24</span>
+          <span class="date-short" id="currentDateShort">11/24</span>
+        </span>
+        <button type="button" class="day-btn" id="nextDayBtn" aria-label="後一日經文" title="後一日 (→)" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="ghost-icon-btn" id="openArchiveBtn" aria-haspopup="dialog" aria-controls="archiveDrawer" aria-label="開啟每日經文歸檔" title="經文歸檔 (A)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+          <span class="archive-label">歸檔</span>
+        </button>
+        <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="themeToggleBtn" aria-label="切換淺色或深色閱讀模式" title="切換閱讀模式 (T)">
+          <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <article id="entryRoot" aria-live="polite">
+      <!-- Sculptural Hero Broadsheet Stage -->
+      <section class="hero-stage" aria-label="今日雙語經文">
+        <!-- Dawn Horizon Geometric Motif -->
+        <svg class="hero-motif" viewBox="0 0 300 220" fill="none" aria-hidden="true">
+          <circle cx="228" cy="96" r="144" stroke="var(--hero-arc)" stroke-width="1"/>
+          <circle cx="228" cy="96" r="102" stroke="var(--hero-arc)" stroke-width="1"/>
+          <circle cx="228" cy="96" r="62" stroke="var(--hero-arc-warm)" stroke-width="1"/>
+          <line x1="76" y1="96" x2="300" y2="96" stroke="var(--hero-arc)" stroke-width="1"/>
+          <circle cx="228" cy="96" r="12" fill="var(--accent)"/>
+        </svg>
+
+        <!-- Chapter:Verse Watermark -->
+        <div class="hero-watermark tabular" id="heroWatermark" aria-hidden="true">1:8</div>
+
+        <div class="hero-content">
+          <div class="hero-kicker tabular" id="heroKicker">DAILY VERSE · 2026.11.24 · 週二</div>
+
+          <blockquote class="hero-quote-zh" id="heroQuoteZh">「這律法書不可離開你的口，總要晝夜思想，好使你謹守遵行這書上所寫的一切話。如此，你的道路就可以亨通，凡事順利。」</blockquote>
+
+          <div class="hero-dash" aria-hidden="true"></div>
+
+          <blockquote class="hero-quote-en" id="heroQuoteEn" lang="en">"Keep this Book of the Law always on your lips; meditate on it day and night, so that you may be careful to do everything written in it. Then you will be prosperous and successful."</blockquote>
+
+          <div class="hero-footer">
+            <h1 class="hero-ref-group">
+              <a class="hero-ref-link" id="heroLinkZh" href="https://www.bible.com/zh-TW/verse-of-the-day" target="_blank" rel="noopener noreferrer">
+                <span id="heroRefZh">約書亞記 1:8</span>
+                <span class="ref-ver" id="heroVerZh">CUNP-神</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+              <span class="ref-sep" aria-hidden="true">·</span>
+              <a class="hero-ref-link hero-ref-en" id="heroLinkEn" href="https://www.bible.com/en-GB/verse-of-the-day" target="_blank" rel="noopener noreferrer" lang="en">
+                <span id="heroRefEn">Joshua 1:8</span>
+                <span class="ref-ver" id="heroVerEn">NIV</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </h1>
+
+            <div class="hero-actions">
+              <button type="button" class="hero-ghost-btn" id="copyVerseBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                <span>複製經文</span>
+              </button>
+              <button type="button" class="hero-ghost-btn" id="copyLinkBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                <span>分享連結</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="mock-notice" id="mockEntryNotice" hidden></p>
+
+      <!-- Tabbed Study Sanctuary -->
+      <section class="study-sanctuary" id="studySanctuary" data-expanded="false" aria-label="經文默想與應用">
+        <div class="study-tabs-bar">
+          <div class="tab-list" role="tablist" aria-label="經文研讀分頁">
+            <button type="button" class="study-tab" role="tab" id="tab-context" aria-controls="panel-context" aria-selected="true" data-tab="context">
+              <span class="tab-num tabular">01</span>
+              <span>經文脈絡</span>
+            </button>
+            <button type="button" class="study-tab" role="tab" id="tab-practice" aria-controls="panel-practice" aria-selected="false" data-tab="practice">
+              <span class="tab-num tabular">02</span>
+              <span>實踐與張力</span>
+            </button>
+            <button type="button" class="study-tab" role="tab" id="tab-workplace" aria-controls="panel-workplace" aria-selected="false" data-tab="workplace">
+              <span class="tab-num tabular">03</span>
+              <span>職場應用</span>
+            </button>
+          </div>
+
+          <button type="button" class="expand-all-btn" id="expandAllBtn" aria-pressed="false">展開全文</button>
+        </div>
+
+        <!-- Panel 01: Context & Cross-References -->
+        <section class="study-panel" id="panel-context" role="tabpanel" aria-labelledby="tab-context">
+          <div class="panel-expanded-head">
+            <span class="panel-expanded-num tabular">01</span>
+            <h2 class="panel-expanded-title">經文背景、脈絡與相似段落</h2>
+          </div>
+
+          <aside class="word-study" aria-label="原文詞彙筆記">
+            <div class="word-study-top">
+              <span class="word-study-tag">原文詞彙筆記</span>
+              <div class="word-study-lexeme">
+                <span class="word-study-hebrew" lang="he">הָגָה</span>
+                <span class="word-study-translit" lang="en">hagah</span>
+              </div>
+              <span class="word-study-gloss">低聲吟誦 · 反覆沉思</span>
+            </div>
+            <p>中文和合本譯為「思想」，英文 NIV 譯為 <em>meditate</em>，但希伯來文 <strong>hagah</strong> 原意更貼近「輕聲唸出、反覆咀嚼」，古經文中也用來形容獅子低吼或鴿子呢喃。古代閱讀多半出聲朗誦，因此經文先說「不可離開你的口」，再說「晝夜思想」——不是抽離現實的空想，而是把一句話放進呼吸與日程，讓它慢慢沉澱為判斷力。</p>
+          </aside>
+
+          <div class="context-split">
+            <div>
+              <h3 class="subsection-heading">歷史脈絡與交接時刻</h3>
+              <div class="prose-column">
+                <p>這段話寫在一個令人屏息的交接時刻。長年帶領以色列人的摩西剛過世，約書亞站在約旦河東岸，預備帶領整族人踏入陌生且充滿未知的迦南地。作為繼任者，他面對的不只是軍事與治理壓力，更要承接「前人不在了，我們該往哪裡走」的群體焦慮。</p>
+                <p>令人意外的是，上主在這個關鍵時刻給予約書亞的首要提醒，不是戰略佈局或兵力盤點，而是把注意力帶回「話語」與「日常」：讓所領受的教導成為每天反覆咀嚼、並落實在行動裡的基準。這裡的節奏不是急著表現，而是先在混亂的任務之前校準內在方向。</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="subsection-heading">相似段落與跨卷對照</h3>
+              <ul class="crossref-list">
+                <li class="crossref-item">
+                  <span class="crossref-ref">詩篇 1:2–3</span>
+                  <span class="crossref-note">同樣使用 <em>hagah</em> 一詞，把晝夜默想神的話語比作栽在溪水旁的樹，在合適時節穩定結果。</span>
+                </li>
+                <li class="crossref-item">
+                  <span class="crossref-ref">申命記 6:6–7</span>
+                  <span class="crossref-note">提醒將教導放在心上，並在日常起居、坐臥與行走之間自然談論，呼應「不離開你的口」。</span>
+                </li>
+                <li class="crossref-item">
+                  <span class="crossref-ref">詩篇 119:15</span>
+                  <span class="crossref-note">「我要默想你的訓詞，看重你的道路」——將安靜思索與實際走路的方向連在一起。</span>
+                </li>
+                <li class="crossref-item">
+                  <span class="crossref-ref">雅各書 1:22–25</span>
+                  <span class="crossref-note">新約對「謹守遵行」的延伸：只聽而不行就像照鏡子轉身就忘，真實的領受會帶來行動改變。</span>
+                </li>
+                <li class="crossref-item">
+                  <span class="crossref-ref">歌羅西書 3:16</span>
+                  <span class="crossref-note">鼓勵讓基督的話語豐豐富富地存在心裡，並透過彼此提醒與日常實踐彼此建造。</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 02: Practice & Honest Tensions -->
+        <section class="study-panel" id="panel-practice" role="tabpanel" aria-labelledby="tab-practice" hidden>
+          <div class="panel-expanded-head">
+            <span class="panel-expanded-num tabular">02</span>
+            <h2 class="panel-expanded-title">日常實踐方式與現實難處</h2>
+          </div>
+
+          <div class="practice-grid">
+            <div>
+              <h3 class="column-label">日常實踐 · 3 個微習慣</h3>
+              <ol class="habit-list">
+                <li class="habit-item">
+                  <span class="habit-index tabular">01</span>
+                  <div>
+                    <h4 class="item-title">晨間兩分鐘「低聲朗讀」</h4>
+                    <p class="item-body">滑開訊息之前，用自己聽得見的音量把今天這節經文慢唸兩遍。讓聲音而不只是眼球經過句子，在一天開始前留下一小塊安靜的邊界。</p>
+                  </div>
+                </li>
+                <li class="habit-item">
+                  <span class="habit-index tabular">02</span>
+                  <div>
+                    <h4 class="item-title">把抽象原則縮成一個具體場景</h4>
+                    <p class="item-body">不必一次背負「遵行一切」的沉重感，只挑選今天一個真實場景——例如一場難談的會議或對家人的語氣——問自己「在這裡謹守誠實與善意是什麼樣子」。</p>
+                  </div>
+                </li>
+                <li class="habit-item">
+                  <span class="habit-index tabular">03</span>
+                  <div>
+                    <h4 class="item-title">睡前三分鐘校準，不帶著自責收尾</h4>
+                    <p class="item-body">回看這天哪個時刻記起了那句話、哪裡又被急躁帶偏。把它當作調整羅盤而不是自我審判，安然把未完成的事交託給明天。</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <div class="tensions-panel">
+              <h3 class="column-label">現實難處 · 3 個真實張力</h3>
+              <ul class="tension-list">
+                <li class="tension-item">
+                  <h4 class="item-title">避開「成功神學」的功利誤讀</h4>
+                  <p class="item-body">「道路亨通、凡事順利」很容易被讀成「只要照做就會升官發財」。但在約書亞記脈絡裡，這句應許指向忠於使命、得著智慧行事，並不保證人生從此無風無浪。</p>
+                </li>
+                <li class="tension-item">
+                  <h4 class="item-title">在碎片化節奏裡「反覆咀嚼」的阻力</h4>
+                  <p class="item-body">現代工作獎勵快速反應與多工切換，停下來 <em>hagah</em> 一句話兩分鐘反而顯得低效。真正的考驗往往不在於不相信，而在於注意力不斷被通知切碎。</p>
+                </li>
+                <li class="tension-item">
+                  <h4 class="item-title">「知道」與「做到」之間的落差</h4>
+                  <p class="item-body">多數人並不是不知道什麼是對的，而是在壓力來臨時仍舊按習慣反應。當行動跟不上理解時，很容易產生挫折感，這正是我們需要容許自己慢慢練習的地方。</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Panel 03: Workplace Application -->
+        <section class="study-panel" id="panel-workplace" role="tabpanel" aria-labelledby="tab-workplace" hidden>
+          <div class="panel-expanded-head">
+            <span class="panel-expanded-num tabular">03</span>
+            <h2 class="panel-expanded-title">他人如何把這節經文用在日常工作</h2>
+          </div>
+
+          <div class="workplace-grid">
+            <article class="workplace-cell">
+              <div>
+                <span class="workplace-kicker">重新定義成果</span>
+                <h3 class="item-title">把「成功」從自我證明轉向忠於職分與造福他人</h3>
+                <p class="item-body">在現代職場裡，許多焦慮來自把績效數字等同於個人價值。從這節經文延伸，工作的穩妥不只是外部頭銜，而是誠實做好眼前交託的份內事，讓成果成為服務人群的通道。</p>
+              </div>
+              <div class="workplace-source">參考脈絡：Tim Keller，《工作的意義》（<em>Every Good Endeavor</em>）對職業呼召與成功觀的詮釋</div>
+            </article>
+
+            <article class="workplace-cell">
+              <div>
+                <span class="workplace-kicker">決策邊界</span>
+                <h3 class="item-title">在灰色利益與短期捷徑前建立「原則停頓」</h3>
+                <p class="item-body">約書亞被提醒「謹守遵行」正是在龐大責任下保持正直。實務上，許多職場導師鼓勵在簽約、定價或回報進度前多問一句「這是否經得起光明的檢驗」，守住長期信任。</p>
+              </div>
+              <div class="workplace-source">參考脈絡：Theology of Work Project — Joshua 1 職場神學註釋</div>
+            </article>
+
+            <article class="workplace-cell">
+              <div>
+                <span class="workplace-kicker">領導姿態</span>
+                <h3 class="item-title">面對高不確定性時，先穩定自己的內在節奏</h3>
+                <p class="item-body">剛接下專案或團隊的管理者常想靠緊迫盯人換取安全感。這段經文展現另一種領導順序：領導者先安頓於確信的根基之中，團隊才能獲得不被恐慌傳染的空間。</p>
+              </div>
+              <div class="workplace-source">參考脈絡：BibleProject — Book of Joshua 導讀與領導力觀察</div>
+            </article>
+
+            <article class="workplace-cell">
+              <div>
+                <span class="workplace-kicker">刻意重複</span>
+                <h3 class="item-title">把 <em>hagah</em> 化為忙碌週期中的提醒錨點</h3>
+                <p class="item-body">不少基督徒創業者與專業者會把核心信念或一句簡短經文寫在桌面便條、會議前筆記或每日開工清單頂端，在高壓迭代中重複校準「為何而做」與「如何待人」。</p>
+              </div>
+              <div class="workplace-source">參考脈絡：Faith Driven Entrepreneur 等職場群體常見的靈修與工作實踐筆記</div>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <!-- Sample Archive Entry Preview -->
+      <section class="sample-section" id="samplePreviewSection" hidden aria-label="歸檔示範內容">
+        <div class="prose-column">
+          <p id="sampleContextNote"></p>
+        </div>
+        <aside class="word-study" style="grid-template-columns: 1fr;">
+          <div class="word-study-top" style="flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+            <span class="word-study-tag">完整版面範例</span>
+            <span class="word-study-translit">2026-11-24 · 約書亞記 1:8</span>
+          </div>
+          <p>想查看包含「原文詞彙筆記」、「相似段落對照」、「3 個日常微習慣 + 3 個真實張力」與「4 則職場應用筆記」的完整靜態樣稿，可點上方「›」或左上角「晨光」回到今日最新條目。</p>
+        </aside>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <button type="button" class="footer-link" id="footerPrevBtn">← 前一日 (11/23)</button>
+      <button type="button" class="footer-link" id="footerArchiveBtn">瀏覽完整歸檔</button>
+    </div>
+    <span class="tabular">verse.namike.me · 每日雙語經文與默想</span>
+  </footer>
+
+  <!-- Archive Slide-Over Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="archive-drawer" id="archiveDrawer" role="dialog" aria-modal="true" aria-labelledby="archiveDrawerTitle" hidden>
+    <div class="drawer-header">
+      <h2 class="drawer-title" id="archiveDrawerTitle">每日經文歸檔</h2>
+      <button type="button" class="ghost-icon-btn ghost-icon-btn--square" id="closeArchiveBtn" aria-label="關閉歸檔視窗">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="drawer-search-wrap">
+      <label class="sr-only" for="archiveSearchInput">搜尋日期或經文出處</label>
+      <input
+        type="search"
+        id="archiveSearchInput"
+        class="drawer-search"
+        placeholder="搜尋日期或經文（例如 2026-11-24、約書亞記、Joshua）"
+        autocomplete="off"
+      />
+    </div>
+    <div class="drawer-body">
+      <h3 class="archive-month">2026 年 11 月 · 示範歸檔</h3>
+      <ul class="archive-list" id="archiveList"></ul>
+      <p class="archive-empty" id="archiveEmpty" hidden>找不到符合條件的每日默想紀錄。</p>
+    </div>
+  </aside>
+
+  <div class="toast" id="toastEl" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      const ENTRIES = [
+        {
+          date: '2026-11-24',
+          dateDot: '2026.11.24',
+          shortLabel: '11/24',
+          weekday: '週二',
+          chapterVerse: '1:8',
+          refZh: '約書亞記 1:8',
+          refEn: 'Joshua 1:8',
+          versionZh: 'CUNP-神',
+          versionEn: 'NIV',
+          quoteZh: '「這律法書不可離開你的口，總要晝夜思想，好使你謹守遵行這書上所寫的一切話。如此，你的道路就可以亨通，凡事順利。」',
+          quoteEn: '"Keep this Book of the Law always on your lips; meditate on it day and night, so that you may be careful to do everything written in it. Then you will be prosperous and successful."',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '面對未知交接時刻，透過反覆咀嚼（hagah）校準內在方向與日常行動。',
+          isFull: true
+        },
+        {
+          date: '2026-11-23',
+          dateDot: '2026.11.23',
+          shortLabel: '11/23',
+          weekday: '週一',
+          chapterVerse: '23:1–3',
+          refZh: '詩篇 23:1–3',
+          refEn: 'Psalm 23:1–3',
+          versionZh: '示範預覽',
+          versionEn: 'Sample Preview',
+          quoteZh: '〔示範歸檔摘要〕在匱乏感與奔忙之間，學習信任一位引導生命走向可安歇水邊的牧者，讓靈魂重新得著蘇醒。',
+          quoteEn: '[Sample archive summary] Amid hurry and scarcity, learning to trust a shepherd who leads toward quiet waters and restores a weary soul.',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '在繁忙週一重新校準「不致缺乏」的安息視野。（歸檔示範頁）',
+          isFull: false,
+          contextNote: '此篇為靜態歸檔互動示範，正式上線後每日路由會由自動化流程生成完整雙語經文與三段式默想內容。本篇聚焦詩篇 23 篇中「牧人引導」與現代人對安全感、休息權的渴求。'
+        },
+        {
+          date: '2026-11-22',
+          dateDot: '2026.11.22',
+          shortLabel: '11/22',
+          weekday: '週日',
+          chapterVerse: '11:28–30',
+          refZh: '馬太福音 11:28–30',
+          refEn: 'Matthew 11:28–30',
+          versionZh: '示範預覽',
+          versionEn: 'Sample Preview',
+          quoteZh: '〔示範歸檔摘要〕耶穌邀請所有背負沉重期待與勞苦的人來到祂面前，卸下過度證明自己的重擔，學習溫柔與謙卑的節奏。',
+          quoteEn: '[Sample archive summary] Jesus invites the weary and heavy-laden to lay down exhausting self-reliance and learn a gentler, unforced rhythm of grace.',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '放下表演與完美主義，走進「輕省的軛」的邀請。（歸檔示範頁）',
+          isFull: false,
+          contextNote: '此篇為靜態歸檔互動示範，展示前後日切換與搜尋體驗。正式站點中每一日皆會保留獨立靜態路徑與完整背景、實踐與職場筆記。'
+        },
+        {
+          date: '2026-11-21',
+          dateDot: '2026.11.21',
+          shortLabel: '11/21',
+          weekday: '週六',
+          chapterVerse: '6:8',
+          refZh: '彌迦書 6:8',
+          refEn: 'Micah 6:8',
+          versionZh: '示範預覽',
+          versionEn: 'Sample Preview',
+          quoteZh: '〔示範歸檔摘要〕在複雜的宗教儀式與道德焦慮之外，先知指出真正重要之事：行公義、好憐憫，存謙卑的心與神同行。',
+          quoteEn: '[Sample archive summary] Beyond complex religious performance, the prophet distills faithful living to justice, mercy, and humble walking with God.',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '行公義、好憐憫、存謙卑的心——回到信仰最清晰的骨架。',
+          isFull: false
+        },
+        {
+          date: '2026-11-20',
+          dateDot: '2026.11.20',
+          shortLabel: '11/20',
+          weekday: '週五',
+          chapterVerse: '3:5–6',
+          refZh: '箴言 3:5–6',
+          refEn: 'Proverbs 3:5–6',
+          versionZh: '示範預覽',
+          versionEn: 'Sample Preview',
+          quoteZh: '〔示範歸檔摘要〕承認自身見識的有限，在交叉路口不單憑焦慮盤算，而願意在每個選擇中尋求更長遠的引導。',
+          quoteEn: '[Sample archive summary] Acknowledging the limits of anxious self-calculation and inviting steady guidance at everyday crossroads.',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '在資訊過載與選擇焦慮中，學習不單靠自己的聰明硬撐。',
+          isFull: false
+        },
+        {
+          date: '2026-11-19',
+          dateDot: '2026.11.19',
+          shortLabel: '11/19',
+          weekday: '週四',
+          chapterVerse: '4:6–7',
+          refZh: '腓立比書 4:6–7',
+          refEn: 'Philippians 4:6–7',
+          versionZh: '示範預覽',
+          versionEn: 'Sample Preview',
+          quoteZh: '〔示範歸檔摘要〕把盤旋腦海的憂慮轉化為具體的傾訴與感謝，讓超越理性計算的平安看守混亂的思緒。',
+          quoteEn: '[Sample archive summary] Turning looping worries into honest prayer with gratitude, allowing peace beyond full explanation to guard the mind.',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '當焦慮停不下來時，把擔憂化作具體的禱告與感謝。',
+          isFull: false
+        },
+        {
+          date: '2026-11-18',
+          dateDot: '2026.11.18',
+          shortLabel: '11/18',
+          weekday: '週三',
+          chapterVerse: '3:22–23',
+          refZh: '耶利米哀歌 3:22–23',
+          refEn: 'Lamentations 3:22–23',
+          versionZh: '示範預覽',
+          versionEn: 'Sample Preview',
+          quoteZh: '〔示範歸檔摘要〕即使在失落與低谷之中，每個清晨依然帶來新的憐憫與重新開始的餘地。',
+          quoteEn: '[Sample archive summary] Even amid loss and exhaustion, every morning brings fresh mercy and room to begin again.',
+          linkZh: 'https://www.bible.com/zh-TW/verse-of-the-day',
+          linkEn: 'https://www.bible.com/en-GB/verse-of-the-day',
+          snippet: '不是因為一切順遂才盼望，而是每早晨都有新的憐憫。',
+          isFull: false
+        }
+      ];
+
+      let currentIndex = 0;
+      let activeTab = 'context';
+      let isExpanded = false;
+      let toastTimer = null;
+
+      const rootEl = document.documentElement;
+      const prevBtn = document.getElementById('prevDayBtn');
+      const nextBtn = document.getElementById('nextDayBtn');
+      const currentDateFull = document.getElementById('currentDateFull');
+      const currentDateShort = document.getElementById('currentDateShort');
+      const footerPrevBtn = document.getElementById('footerPrevBtn');
+
+      const heroKicker = document.getElementById('heroKicker');
+      const heroWatermark = document.getElementById('heroWatermark');
+      const heroQuoteZh = document.getElementById('heroQuoteZh');
+      const heroQuoteEn = document.getElementById('heroQuoteEn');
+      const heroLinkZh = document.getElementById('heroLinkZh');
+      const heroLinkEn = document.getElementById('heroLinkEn');
+      const heroRefZh = document.getElementById('heroRefZh');
+      const heroVerZh = document.getElementById('heroVerZh');
+      const heroRefEn = document.getElementById('heroRefEn');
+      const heroVerEn = document.getElementById('heroVerEn');
+      const mockEntryNotice = document.getElementById('mockEntryNotice');
+
+      const studySanctuary = document.getElementById('studySanctuary');
+      const samplePreviewSection = document.getElementById('samplePreviewSection');
+      const sampleContextNote = document.getElementById('sampleContextNote');
+      const tabButtons = Array.from(document.querySelectorAll('.study-tab'));
+      const tabPanels = {
+        context: document.getElementById('panel-context'),
+        practice: document.getElementById('panel-practice'),
+        workplace: document.getElementById('panel-workplace')
+      };
+      const expandAllBtn = document.getElementById('expandAllBtn');
+
+      const archiveDrawer = document.getElementById('archiveDrawer');
+      const drawerBackdrop = document.getElementById('drawerBackdrop');
+      const openArchiveBtn = document.getElementById('openArchiveBtn');
+      const footerArchiveBtn = document.getElementById('footerArchiveBtn');
+      const closeArchiveBtn = document.getElementById('closeArchiveBtn');
+      const archiveSearchInput = document.getElementById('archiveSearchInput');
+      const archiveList = document.getElementById('archiveList');
+      const archiveEmpty = document.getElementById('archiveEmpty');
+
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeIconSun = document.getElementById('themeIconSun');
+      const themeIconMoon = document.getElementById('themeIconMoon');
+      const toastEl = document.getElementById('toastEl');
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add('visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.remove('visible');
+        }, 2200);
+      }
+
+      function applyTheme(theme) {
+        rootEl.setAttribute('data-theme', theme);
+        const isDark = theme === 'dark';
+        themeIconSun.style.display = isDark ? 'block' : 'none';
+        themeIconMoon.style.display = isDark ? 'none' : 'block';
+        try {
+          localStorage.setItem('daily-verse-theme', theme);
+        } catch (_) {}
+      }
+
+      (function initTheme() {
+        const params = new URLSearchParams(window.location.search);
+        const qTheme = params.get('theme');
+        if (qTheme === 'dark' || qTheme === 'light') {
+          applyTheme(qTheme);
+          return;
+        }
+        let saved = null;
+        try {
+          saved = localStorage.getItem('daily-verse-theme');
+        } catch (_) {}
+        if (saved === 'dark' || saved === 'light') {
+          applyTheme(saved);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          applyTheme('dark');
+        } else {
+          applyTheme('light');
+        }
+      })();
+
+      themeToggleBtn.addEventListener('click', () => {
+        const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        applyTheme(next);
+      });
+
+      function syncStudyView() {
+        studySanctuary.setAttribute('data-expanded', isExpanded ? 'true' : 'false');
+        expandAllBtn.setAttribute('aria-pressed', isExpanded ? 'true' : 'false');
+        expandAllBtn.textContent = isExpanded ? '分頁閱讀' : '展開全文';
+
+        tabButtons.forEach((btn) => {
+          const isCurrent = btn.getAttribute('data-tab') === activeTab;
+          btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
+        });
+
+        Object.keys(tabPanels).forEach((key) => {
+          const panel = tabPanels[key];
+          panel.hidden = isExpanded ? false : key !== activeTab;
+        });
+      }
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeTab = btn.getAttribute('data-tab');
+          if (isExpanded) {
+            isExpanded = false;
+          }
+          syncStudyView();
+        });
+      });
+
+      expandAllBtn.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        syncStudyView();
+      });
+
+      function renderEntry(index) {
+        currentIndex = index;
+        const entry = ENTRIES[index];
+
+        currentDateFull.textContent = entry.dateDot;
+        currentDateShort.textContent = entry.shortLabel;
+        heroKicker.textContent = `DAILY VERSE · ${entry.dateDot} · ${entry.weekday}`;
+        heroWatermark.textContent = entry.chapterVerse;
+        heroWatermark.classList.toggle('is-long', entry.chapterVerse.length > 4);
+
+        heroQuoteZh.textContent = entry.quoteZh;
+        heroQuoteEn.textContent = entry.quoteEn;
+        heroLinkZh.href = entry.linkZh;
+        heroLinkEn.href = entry.linkEn;
+        heroRefZh.textContent = entry.refZh;
+        heroVerZh.textContent = entry.versionZh;
+        heroRefEn.textContent = entry.refEn;
+        heroVerEn.textContent = entry.versionEn;
+        document.title = `晨光 · Daily Verse — ${entry.refZh} · ${entry.refEn}`;
+
+        const older = ENTRIES[index + 1];
+        const newer = ENTRIES[index - 1];
+
+        prevBtn.disabled = !older;
+        prevBtn.setAttribute('aria-label', older ? `前一日 (${older.shortLabel})` : '已是最早示範存檔');
+        nextBtn.disabled = !newer;
+        nextBtn.setAttribute('aria-label', newer ? `後一日 (${newer.shortLabel})` : '已是最新一日經文');
+
+        if (older) {
+          footerPrevBtn.disabled = false;
+          footerPrevBtn.textContent = `← 前一日 (${older.shortLabel})`;
+        } else {
+          footerPrevBtn.disabled = true;
+          footerPrevBtn.textContent = '已是最早示範存檔';
+        }
+
+        if (entry.isFull) {
+          mockEntryNotice.hidden = true;
+          studySanctuary.hidden = false;
+          samplePreviewSection.hidden = true;
+        } else {
+          mockEntryNotice.hidden = false;
+          mockEntryNotice.textContent = `目前預覽 ${entry.date} 的歸檔示範條目；點上方「›」可返回 2026.11.24 約書亞記 1:8 完整稿。`;
+          studySanctuary.hidden = true;
+          samplePreviewSection.hidden = false;
+          sampleContextNote.textContent = entry.contextNote || '此篇為靜態歸檔互動示範摘要。切換回 2026.11.24（約書亞記 1:8）即可檢視完整的三段式設計樣貌。';
+        }
+
+        renderArchiveList(archiveSearchInput.value);
+      }
+
+      function renderArchiveList(query) {
+        const q = (query || '').trim().toLowerCase();
+        const filtered = ENTRIES.map((item, idx) => ({ item, idx })).filter(({ item }) => {
+          if (!q) return true;
+          return (
+            item.date.toLowerCase().includes(q) ||
+            item.refZh.toLowerCase().includes(q) ||
+            item.refEn.toLowerCase().includes(q) ||
+            item.snippet.toLowerCase().includes(q)
+          );
+        });
+
+        archiveList.innerHTML = '';
+        archiveEmpty.hidden = filtered.length > 0;
+
+        filtered.forEach(({ item, idx }) => {
+          const li = document.createElement('li');
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'archive-entry-btn' + (idx === currentIndex ? ' is-active' : '');
+          btn.innerHTML = `
+            <span class="archive-date tabular">${item.date}</span>
+            <span class="archive-ref">${item.refZh} · ${item.refEn}</span>
+            <span class="archive-snippet">${item.snippet}</span>
+          `;
+          btn.addEventListener('click', () => {
+            renderEntry(idx);
+            closeDrawer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          li.appendChild(btn);
+          archiveList.appendChild(li);
+        });
+      }
+
+      function openDrawer() {
+        archiveDrawer.hidden = false;
+        drawerBackdrop.hidden = false;
+        requestAnimationFrame(() => {
+          archiveDrawer.classList.add('open');
+          drawerBackdrop.classList.add('open');
+          archiveSearchInput.focus();
+        });
+      }
+
+      function closeDrawer() {
+        archiveDrawer.classList.remove('open');
+        drawerBackdrop.classList.remove('open');
+        setTimeout(() => {
+          if (!archiveDrawer.classList.contains('open')) {
+            archiveDrawer.hidden = true;
+            drawerBackdrop.hidden = true;
+          }
+        }, 220);
+      }
+
+      async function copyText(text, label) {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+            showToast(label);
+            return;
+          }
+        } catch (_) {}
+
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast(label);
+        } catch (_) {
+          showToast('無法自動複製，請手動選取文字');
+        } finally {
+          document.body.removeChild(ta);
+        }
+      }
+
+      document.getElementById('copyVerseBtn').addEventListener('click', () => {
+        const e = ENTRIES[currentIndex];
+        const shareUrl = `${window.location.href.split('#')[0]}#${e.date}`;
+        const payload = `${e.quoteZh}\n— ${e.refZh} (${e.versionZh})\n\n${e.quoteEn}\n— ${e.refEn} (${e.versionEn})\n\n${shareUrl}`;
+        copyText(payload, '已複製中英經文與來源');
+      });
+
+      document.getElementById('copyLinkBtn').addEventListener('click', () => {
+        const e = ENTRIES[currentIndex];
+        const shareUrl = `${window.location.href.split('#')[0]}#${e.date}`;
+        copyText(shareUrl, `已複製 ${e.date} 連結`);
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentIndex + 1 < ENTRIES.length) renderEntry(currentIndex + 1);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentIndex - 1 >= 0) renderEntry(currentIndex - 1);
+      });
+
+      footerPrevBtn.addEventListener('click', () => {
+        if (currentIndex + 1 < ENTRIES.length) {
+          renderEntry(currentIndex + 1);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+
+      document.getElementById('brandHomeLink').addEventListener('click', (ev) => {
+        ev.preventDefault();
+        renderEntry(0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      openArchiveBtn.addEventListener('click', openDrawer);
+      footerArchiveBtn.addEventListener('click', openDrawer);
+      closeArchiveBtn.addEventListener('click', closeDrawer);
+      drawerBackdrop.addEventListener('click', closeDrawer);
+
+      archiveSearchInput.addEventListener('input', (ev) => {
+        renderArchiveList(ev.target.value);
+      });
+
+      document.addEventListener('keydown', (ev) => {
+        const activeTag = document.activeElement ? document.activeElement.tagName : '';
+        if (ev.key === 'Escape' && archiveDrawer.classList.contains('open')) {
+          closeDrawer();
+          return;
+        }
+        if (activeTag === 'INPUT' || activeTag === 'TEXTAREA') return;
+
+        if (ev.key === 'ArrowLeft' && currentIndex + 1 < ENTRIES.length) {
+          renderEntry(currentIndex + 1);
+        } else if (ev.key === 'ArrowRight' && currentIndex - 1 >= 0) {
+          renderEntry(currentIndex - 1);
+        } else if (ev.key === '1') {
+          activeTab = 'context';
+          isExpanded = false;
+          syncStudyView();
+        } else if (ev.key === '2') {
+          activeTab = 'practice';
+          isExpanded = false;
+          syncStudyView();
+        } else if (ev.key === '3') {
+          activeTab = 'workplace';
+          isExpanded = false;
+          syncStudyView();
+        } else if (ev.key.toLowerCase() === 'a') {
+          if (archiveDrawer.classList.contains('open')) closeDrawer();
+          else openDrawer();
+        } else if (ev.key.toLowerCase() === 't') {
+          const next = rootEl.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+        }
+      });
+
+      const initParams = new URLSearchParams(window.location.search);
+      const qTab = initParams.get('tab');
+      if (qTab && tabPanels[qTab]) {
+        activeTab = qTab;
+      } else if (qTab === 'all') {
+        isExpanded = true;
+      }
+
+      syncStudyView();
+      renderArchiveList('');
+    })();
+  </script>
+</body>
+</html>
