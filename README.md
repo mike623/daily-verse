@@ -4,7 +4,7 @@ Bilingual daily scripture reflection site published automatically to GitHub Page
 
 ## Structure
 
-- `data/entries/YYYY-MM-DD.json` — Structured daily entry (verbatim Bible.com `EN` + `zh-TW` quotes, original-language word study, historical context, cross-references, daily habits & tensions, sourced workplace notes).
+- `data/entries/YYYY-MM-DD.json` — Structured daily entry (verbatim Bible.com `EN` + `zh-TW` quotes, original-language word study, historical context, cross-references, daily habits & tensions, life-application cards by angle: family, inner life, body and rest, money, digital life, community, suffering, workplace).
 - `scripts/build_site.py` — Zero-dependency Python 3 generator that validates entries and outputs:
   - `verse/YYYY/MM/DD/index.html` (canonical static page per day; the Worker 301-redirects old `/YYYY/MM/DD/` links here)
   - `index.html` (latest entry at site root)

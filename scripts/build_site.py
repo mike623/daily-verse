@@ -56,6 +56,19 @@ BOOK_CODES = {
     "philemon": "PHM", "hebrews": "HEB", "james": "JAS", "1 peter": "1PE", "2 peter": "2PE",
     "1 john": "1JN", "2 john": "2JN", "3 john": "3JN", "jude": "JUD", "revelation": "REV",
 }
+# Life-application angles; each entry picks 3-5 that fit the verse.
+LIFE_ANGLES = {
+    "family": "家庭與關係",
+    "inner": "內心與情緒",
+    "body": "身體與休息",
+    "money": "金錢與消費",
+    "digital": "數位生活",
+    "community": "群體與鄰舍",
+    "suffering": "苦難與等候",
+    "workplace": "職場",
+}
+EDITOR_SOURCE = "編者默想"
+
 # Bible.com version ids, verified against live verse pages.
 VERSION_IDS = {"NIV": 111, "CUNP-神": 46}
 REF_RE = re.compile(r"^(.+?)\s+(\d+):(\d+)(?:\s*[-–]\s*(\d+))?$")
@@ -155,16 +168,44 @@ def load_and_validate_entry(path: Path) -> dict:
         require_non_empty_str(item, "title", f"{source}:tensions[{idx}]")
         require_non_empty_str(item, "body", f"{source}:tensions[{idx}]")
 
-    workplace = raw.get("workplace")
-    if not isinstance(workplace, list) or not workplace:
-        raise ValueError(f"{source}: 'workplace' must be a non-empty list")
-    for idx, item in enumerate(workplace):
-        if not isinstance(item, dict):
-            raise ValueError(f"{source}: workplace[{idx}] must be an object")
-        require_non_empty_str(item, "kicker", f"{source}:workplace[{idx}]")
-        require_non_empty_str(item, "title", f"{source}:workplace[{idx}]")
-        require_non_empty_str(item, "body", f"{source}:workplace[{idx}]")
-        require_non_empty_str(item, "source", f"{source}:workplace[{idx}]")
+    life_items: list[dict] = []
+    life = raw.get("life")
+    if life is not None:
+        if not isinstance(life, list) or not 3 <= len(life) <= 5:
+            raise ValueError(f"{source}: 'life' must be a list of 3-5 items")
+        for idx, item in enumerate(life):
+            where = f"{source}:life[{idx}]"
+            if not isinstance(item, dict):
+                raise ValueError(f"{where} must be an object")
+            angle = require_non_empty_str(item, "angle", where)
+            if angle not in LIFE_ANGLES:
+                raise ValueError(f"{where}: unknown angle '{angle}', expected one of {sorted(LIFE_ANGLES)}")
+            life_items.append({
+                "angle": angle,
+                "tag": LIFE_ANGLES[angle],
+                "title": require_non_empty_str(item, "title", where),
+                "body": require_non_empty_str(item, "body", where),
+                "source": require_non_empty_str(item, "source", where),
+            })
+        if len({i["angle"] for i in life_items}) != len(life_items):
+            raise ValueError(f"{source}: each 'life' angle may appear only once")
+    else:
+        # Legacy entries (before 2026-11-27) only have workplace cards.
+        workplace = raw.get("workplace")
+        if not isinstance(workplace, list) or not workplace:
+            raise ValueError(f"{source}: needs a 'life' list (or legacy 'workplace' list)")
+        for idx, item in enumerate(workplace):
+            where = f"{source}:workplace[{idx}]"
+            if not isinstance(item, dict):
+                raise ValueError(f"{where} must be an object")
+            kicker = require_non_empty_str(item, "kicker", where)
+            life_items.append({
+                "angle": "workplace",
+                "tag": f"{LIFE_ANGLES['workplace']} · {kicker}",
+                "title": require_non_empty_str(item, "title", where),
+                "body": require_non_empty_str(item, "body", where),
+                "source": require_non_empty_str(item, "source", where),
+            })
 
     word_study = raw.get("wordStudy")
     normalized_ws = None
@@ -218,15 +259,7 @@ def load_and_validate_entry(path: Path) -> dict:
         "crossRefs": [{"ref": c["ref"].strip(), "note": c["note"].strip()} for c in cross_refs],
         "habits": [{"title": h["title"].strip(), "body": h["body"].strip()} for h in habits],
         "tensions": [{"title": t["title"].strip(), "body": t["body"].strip()} for t in tensions],
-        "workplace": [
-            {
-                "kicker": w["kicker"].strip(),
-                "title": w["title"].strip(),
-                "body": w["body"].strip(),
-                "source": w["source"].strip(),
-            }
-            for w in workplace
-        ],
+        "life": life_items,
     }
 
 
@@ -302,16 +335,16 @@ def render_page(
                 </li>"""
         for t in entry["tensions"]
     )
-    workplace_html = "\n            ".join(
-        f"""<article class="workplace-cell">
+    life_html = "\n            ".join(
+        f"""<article class="workplace-cell" data-angle="{esc(w['angle'])}">
               <div>
-                <span class="workplace-kicker">{esc(w['kicker'])}</span>
+                <span class="workplace-kicker">{esc(w['tag'])}</span>
                 <h3 class="item-title">{esc(w['title'])}</h3>
                 <p class="item-body">{esc(w['body'])}</p>
               </div>
               <div class="workplace-source">{esc(w['source'])}</div>
             </article>"""
-        for w in entry["workplace"]
+        for w in entry["life"]
     )
 
     archive_json = json.dumps(archive_manifest, ensure_ascii=False).replace("</", "<\\/")
@@ -475,7 +508,7 @@ def render_page(
             </button>
             <button type="button" class="study-tab" role="tab" id="tab-workplace" aria-controls="panel-workplace" aria-selected="false" tabindex="-1" data-tab="workplace">
               <span class="tab-num tabular" aria-hidden="true">03</span>
-              <span>職場應用</span>
+              <span>生活應用</span>
             </button>
           </div>
 
@@ -531,11 +564,11 @@ def render_page(
         <section class="study-panel" id="panel-workplace" role="tabpanel" aria-labelledby="tab-workplace" tabindex="0" hidden>
           <div class="panel-expanded-head">
             <span class="panel-expanded-num tabular" aria-hidden="true">03</span>
-            <h2 class="panel-expanded-title">別人怎麼把這節經文用在工作上</h2>
+            <h2 class="panel-expanded-title">把這節經文帶進生活</h2>
           </div>
 
           <div class="workplace-grid">
-            {workplace_html}
+            {life_html}
           </div>
         </section>
       </section>
