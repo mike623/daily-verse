@@ -8,6 +8,7 @@ import hashlib
 import html
 import json
 import re
+from urllib.parse import quote
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -38,6 +39,39 @@ REQUIRED_STR_FIELDS = (
     "snippet",
     "contextHeading",
 )
+
+BOOK_CODES = {
+    "genesis": "GEN", "exodus": "EXO", "leviticus": "LEV", "numbers": "NUM", "deuteronomy": "DEU",
+    "joshua": "JOS", "judges": "JDG", "ruth": "RUT", "1 samuel": "1SA", "2 samuel": "2SA",
+    "1 kings": "1KI", "2 kings": "2KI", "1 chronicles": "1CH", "2 chronicles": "2CH", "ezra": "EZR",
+    "nehemiah": "NEH", "esther": "EST", "job": "JOB", "psalm": "PSA", "psalms": "PSA",
+    "proverbs": "PRO", "ecclesiastes": "ECC", "song of songs": "SNG", "song of solomon": "SNG",
+    "isaiah": "ISA", "jeremiah": "JER", "lamentations": "LAM", "ezekiel": "EZK", "daniel": "DAN",
+    "hosea": "HOS", "joel": "JOL", "amos": "AMO", "obadiah": "OBA", "jonah": "JON", "micah": "MIC",
+    "nahum": "NAM", "habakkuk": "HAB", "zephaniah": "ZEP", "haggai": "HAG", "zechariah": "ZEC",
+    "malachi": "MAL", "matthew": "MAT", "mark": "MRK", "luke": "LUK", "john": "JHN", "acts": "ACT",
+    "romans": "ROM", "1 corinthians": "1CO", "2 corinthians": "2CO", "galatians": "GAL",
+    "ephesians": "EPH", "philippians": "PHP", "colossians": "COL", "1 thessalonians": "1TH",
+    "2 thessalonians": "2TH", "1 timothy": "1TI", "2 timothy": "2TI", "titus": "TIT",
+    "philemon": "PHM", "hebrews": "HEB", "james": "JAS", "1 peter": "1PE", "2 peter": "2PE",
+    "1 john": "1JN", "2 john": "2JN", "3 john": "3JN", "jude": "JUD", "revelation": "REV",
+}
+# Bible.com version ids, verified against live verse pages.
+VERSION_IDS = {"NIV": 111, "CUNP-神": 46}
+REF_RE = re.compile(r"^(.+?)\s+(\d+):(\d+)(?:\s*[-–]\s*(\d+))?$")
+
+
+def bible_permalink(ref_en: str, version: str, locale: str) -> str | None:
+    """Permanent bible.com link for one passage, e.g. /zh-TW/bible/46/ISA.26.3.CUNP-神."""
+    m = REF_RE.match(ref_en.strip())
+    vid = VERSION_IDS.get(version)
+    if not m or vid is None:
+        return None
+    code = BOOK_CODES.get(m.group(1).strip().lower())
+    if not code:
+        return None
+    verses = m.group(3) + (f"-{m.group(4)}" if m.group(4) else "")
+    return f"https://www.bible.com/{locale}/bible/{vid}/{code}.{m.group(2)}.{verses}.{quote(version)}"
 
 
 def esc(value: object) -> str:
@@ -85,6 +119,10 @@ def load_and_validate_entry(path: Path) -> dict:
     parsed_date = dt.date.fromisoformat(date_str)
     require_url(raw, "linkZh", source)
     require_url(raw, "linkEn", source)
+    link_zh = bible_permalink(raw["refEn"], raw["versionZh"].strip(), "zh-TW") or raw["linkZh"].strip()
+    link_en = bible_permalink(raw["refEn"], raw["versionEn"].strip(), "en-GB") or raw["linkEn"].strip()
+    if "verse-of-the-day" in link_zh or "verse-of-the-day" in link_en:
+        raise ValueError(f"{source}: could not build a permanent bible.com link for '{raw['refEn']}'; add the book to BOOK_CODES or the version to VERSION_IDS")
 
     ctx_paras = raw.get("contextParagraphs")
     if not isinstance(ctx_paras, list) or not ctx_paras or not all(isinstance(p, str) and p.strip() for p in ctx_paras):
@@ -168,11 +206,11 @@ def load_and_validate_entry(path: Path) -> dict:
         "refZh": raw["refZh"].strip(),
         "versionZh": raw["versionZh"].strip(),
         "quoteZh": raw["quoteZh"].strip(),
-        "linkZh": raw["linkZh"].strip(),
+        "linkZh": link_zh,
         "refEn": raw["refEn"].strip(),
         "versionEn": raw["versionEn"].strip(),
         "quoteEn": raw["quoteEn"].strip(),
-        "linkEn": raw["linkEn"].strip(),
+        "linkEn": link_en,
         "snippet": raw["snippet"].strip(),
         "wordStudy": normalized_ws,
         "contextHeading": raw["contextHeading"].strip(),
